@@ -22,9 +22,11 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     let userData: any = localStorage.getItem('hoppedin-user');
+    console.log(userData, 'before parse')
     if (userData) {
       userData = JSON.parse(userData);
-      if (userData && userData.id) {
+
+      if (userData && userData.userId) {
         this.userProfile = {
           firstName: userData.firstName,
           lastName: userData.lastName,
