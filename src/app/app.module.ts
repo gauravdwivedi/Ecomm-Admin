@@ -3,14 +3,16 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LayoutModule } from './views/layout/layout.module';
 import { AuthGuard } from './core/guard/auth.guard';
 
 import { AppComponent } from './app.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ErrorPageComponent } from './views/pages/error-page/error-page.component';
-
 import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -22,6 +24,9 @@ import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    SweetAlert2Module.forRoot()
   ],
   providers: [
     AuthGuard,

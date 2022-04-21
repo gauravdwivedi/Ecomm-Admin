@@ -33,3 +33,31 @@
 
 // NobleUI styles For RTL
 // @import "./assets/scss/style.rtl.css";
+
+
+.has-error {
+    border: 1px solid red !important;
+}
+
+.is-error {
+    color: red;
+}
+
+.d-none {
+    display: none;
+}
+
+.app-spinner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+.has-spinner {
+    pointer-events: none;
+    opacity: .2;
+}
+
+.invalid-feedback {
+    display: block !important;
+}
