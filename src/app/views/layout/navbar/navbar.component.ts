@@ -9,13 +9,30 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+  userProfile: {
+    firstName: '',
+    lastName: ''
+  }
+
   constructor(
-    @Inject(DOCUMENT) private document: Document, 
+    @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
     private router: Router
   ) { }
 
   ngOnInit(): void {
+    let userData: any = localStorage.getItem('hoppedin-user');
+    if (userData) {
+      userData = JSON.parse(userData);
+      if (userData && userData.id) {
+        this.userProfile = {
+          firstName: userData.firstName,
+          lastName: userData.lastName,
+
+        }
+      }
+    }
+
   }
 
   /**
@@ -31,9 +48,9 @@ export class NavbarComponent implements OnInit {
    */
   onLogout(e: Event) {
     e.preventDefault();
-    localStorage.removeItem('isLoggedin');
-
-    if (!localStorage.getItem('isLoggedin')) {
+    localStorage.removeItem('hoppedin-admin-token');
+    localStorage.removeItem('hoppedin-user');
+    if (!localStorage.getItem('hoppedin-admin-token')) {
       this.router.navigate(['/auth/login']);
     }
   }

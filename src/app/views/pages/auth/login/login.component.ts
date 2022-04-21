@@ -41,8 +41,15 @@ export class LoginComponent implements OnInit {
         console.log('Res', res)
         if (res) {
           if (res.registration == false && res.user.role == 1) {
-            localStorage.setItem('hoppedin-admin-token', res.token);
-            if (localStorage.getItem('hoppedin-admin-token')) {
+
+            localStorage.setItem('hoppedin-admin-token', res.token)
+            localStorage.setItem('hoppedin-user', JSON.stringify(res.user))
+            // localStorage.setItem('isLoggedin', 'true');
+            // let isLoggedin = localStorage.getItem('isLoggedin');
+            let token = localStorage.getItem('hoppedin-admin-token');
+            console.log(token, 'length', token?.length)
+            if (token) {
+              console.log('INSIDE IF CONDITION')
               this.router.navigate([this.returnUrl])
             }
           } else {
@@ -59,10 +66,10 @@ export class LoginComponent implements OnInit {
       })
     }
 
-    localStorage.setItem('isLoggedin', 'true');
-    if (localStorage.getItem('isLoggedin')) {
-      this.router.navigate([this.returnUrl]);
-    }
+    // localStorage.setItem('isLoggedin', 'true');
+    // if (localStorage.getItem('isLoggedin')) {
+    //   this.router.navigate([this.returnUrl]);
+    // }
   }
 
   isValid() {
