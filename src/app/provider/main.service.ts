@@ -28,16 +28,16 @@ export class MainService {
     }
 
     //Get Api 
-
     getApi(endPointURL: any): Observable<any> {
         let headers: any = {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'site-id': environment.siteId
         }
 
-        if (localStorage.getItem('hoppedin-token')) {
+        if (localStorage.getItem('hoppedin-admin-token')) {
             headers = {
                 ...headers,
-                token: localStorage.getItem('hoppedin-token')
+                token: localStorage.getItem('hoppedin-admin-token')
             }
         }
 
@@ -46,6 +46,7 @@ export class MainService {
         }
 
         return this.httpClient.get(this.baseURL + endPointURL, httpHeaders)
+
 
     }
 
@@ -56,10 +57,10 @@ export class MainService {
             'Content-Type': 'application/json',
             'site-id': environment.siteId
         }
-        if (localStorage.getItem('hoppedin-token')) {
+        if (localStorage.getItem('hoppedin-admin-token')) {
             headers = {
                 ...headers,
-                token: localStorage.getItem('hoppedin-token')
+                token: localStorage.getItem('hoppedin-admin-token')
             }
         }
         const httpHeaders = {
@@ -73,6 +74,57 @@ export class MainService {
             )
     }
 
+    // ----------------Delete User------------------------- //
+    deleteApi(endPointURL: any, data: any): Observable<any> {
+        let headers: any = {
+            'Content-Type': 'application/json',
+            'site-id': environment.siteId
+
+        }
+        if (localStorage.getItem('hoppedin-admin-token')) {
+            headers = {
+                ...headers,
+                token: localStorage.getItem('hoppedin-admin-token')
+            }
+        }
+        const httpHeaders = {
+            headers: new HttpHeaders(headers)
+        }
+        return this.httpClient.delete(this.baseURL + endPointURL, data)
+    }
+
+    //-------Update -----
+
+    update(endPointURL: any, data: any): Observable<any> {
+        let headers: any = {
+            'Content-Type': 'application/json',
+            'site-id': environment.siteId,
+            'x-sso-token': localStorage.getItem('hoppedin-admin-token')
+        }
+        let body: any = {
+            'userId': data.id,
+            'role': data.role
+        }
+
+        // if (localStorage.getItem('hoppedin-admin-token')) {
+        //     headers = {
+        //         ...headers,
+
+        //     }
+        // }
+        const httpHeaders = {
+            headers: new HttpHeaders(headers)
+        }
+        return this.httpClient.patch(this.baseURL + endPointURL, body, httpHeaders)
+            .pipe(
+                tap(() => {
+                    this._refreshNeeded.next();
+                })
+            )
+    }
+
+
+    // -----------------Delete user-------
 
     // // --------------- toastr service ----------------- //
     // successToast(msg) {

@@ -18,59 +18,65 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, public mainService: MainService) { }
 
   ngOnInit(): void {
+
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
+
   onLoggedin(e: Event) {
     e.preventDefault();
-    console.log('Logging IN');
+
     this.isSubmitting = true;
 
     if (this.isValid()) {
-      console.log('Valid')
       const params = {
         email: this.email,
-        password: this.password,
+        password: this.password
       }
 
       const apiURL = `api/v1/auth/user/verify`;
+
       this.mainService.showSpinner();
-      this.mainService.postApi(apiURL, params).subscribe((res: any) => {
-        this.mainService.hideSpinner();
-        console.log('Res', res)
-        if (res) {
-          if (res.registration == false && res.user.role == 1) {
+      this.mainService.postApi(apiURL, params).subscribe({
+        next: (v) => {
 
-            localStorage.setItem('hoppedin-admin-token', res.token)
-            localStorage.setItem('hoppedin-user', JSON.stringify(res.user))
-            // localStorage.setItem('isLoggedin', 'true');
-            // let isLoggedin = localStorage.getItem('isLoggedin');
-            let token = localStorage.getItem('hoppedin-admin-token');
-            console.log(token, 'length', token?.length)
-            if (token) {
-              console.log('INSIDE IF CONDITION')
-              this.router.navigate([this.returnUrl])
+          console.log('Response', v)
+
+          this.mainService.hideSpinner()
+
+          if (v.registration == false && v.user.role == 1) {
+
+            localStorage.setItem('isLoggedin', 'true')
+            localStorage.setItem('hoppedin-admin-token', v.token)
+            localStorage.setItem('hoppedin-user', JSON.stringify(v.user))
+
+            let isLoggedin = localStorage.getItem('isLoggedin');
+            if (isLoggedin) {
+              this.router.navigate(['/'])
             }
-          } else {
-            this.error = 'Invalid Credentials'
           }
 
-          if (res.registration == true || res.status == 400) {
 
-            this.error = 'User doesn\'t exists'
-
+          if (v.registration == true || v.user.role == 2) {
+            this.error = 'Wrong Credentials!'
           }
+
+        },
+        error: (e) => {
+          console.log(e);
+          this.mainService.hideSpinner()
+          this.error = e.error.error.message
+
+        },
+        complete: () => {
+          console.log('complete')
         }
-
       })
     }
 
-    // localStorage.setItem('isLoggedin', 'true');
-    // if (localStorage.getItem('isLoggedin')) {
-    //   this.router.navigate([this.returnUrl]);
-    // }
   }
+
 
   isValid() {
     return this.email && this.password

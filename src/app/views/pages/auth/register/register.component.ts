@@ -15,10 +15,10 @@ export class RegisterComponent implements OnInit {
 
   onRegister(e: Event) {
     e.preventDefault();
-    localStorage.setItem('isLoggedin', 'true');
-    if (localStorage.getItem('isLoggedin')) {
-      this.router.navigate(['/']);
-    }
+    // localStorage.setItem('isLoggedin', 'true');
+    // if (localStorage.getItem('isLoggedin')) {
+    //   this.router.navigate(['/']);
+    // }
   }
 
 }

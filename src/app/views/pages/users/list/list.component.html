@@ -1,0 +1,90 @@
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink=".">Users</a></li>
+        <li class="breadcrumb-item active" aria-current="page">List</li>
+    </ol>
+</nav>
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Users List</h4>
+                <p class="card-description mb-0">Manage users</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">Events</h6>
+                <div class="table-responsive">
+                    <table id="dataTableExample" class="table">
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>gender</th>
+                                <th>DOB</th>
+                                <th>Phone</th>
+                                <th>createdAt</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of usersList">
+                                <td>{{user.id}}</td>
+                                <td>{{user.first_name}} {{user.last_name}}</td>
+                                <td>{{user.email}}</td>
+                                <td *ngIf="user.role==1 then thenBlock else elseBlock"></td>
+                                <ng-template #thenBlock>
+                                    <td>Admin</td>
+                                </ng-template>
+                                <ng-template #elseBlock>
+                                    <td>User</td>
+                                </ng-template>
+                                <td>{{user.gender}}</td>
+                                <td>{{user.dob}}</td>
+                                <td>{{user.phone}}</td>
+                                <td>{{user.created_at}}</td>
+
+                                <td>
+                                    <!-- <a role="button" (click)="delete(user.id)"><i class="mr-2" data-feather="trash-2"
+                                            appFeatherIcon></i></a> -->
+                                    <!-- <a href="users/action?id={{user.id}}"><i class="mr-2" data-feather="edit"
+                                            appFeatherIcon></i></a> -->
+
+                                    <div ngbDropdown>
+                                        <a role="button" ngbDropdownToggle><i class="mr-2" data-feather="more-vertical"
+                                                id="gfg" appFeatherIcon></i></a>
+
+                                        <div ngbDropdownMenu="gfg">
+                                            <a href="users/action?id={{user.id}}" ngbDropdownItem>Edit User</a>
+                                            <button (click)="changeRole(user.id,user.role)" ngbDropdownItem>Change
+                                                Role</button>
+                                            <button (click)="delete(user.id)" ngbDropdownItem>Delete User</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<nav class="settings-sidebar">
+    <div class="sidebar-body">
+        <a href="users/add" class="settings-sidebar-toggler">
+            <i class="feather icon-plus"></i>
+        </a>
+    </div>
+</nav>

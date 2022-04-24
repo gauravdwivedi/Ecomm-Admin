@@ -1,0 +1,112 @@
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/users">Users</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Add New User</li>
+    </ol>
+</nav>
+
+<div class="row">
+    <div class="col-md-12 stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">Add New User</h6>
+                <form [formGroup]="userForm" (submit)="submitForm()">
+                    <div class="row">
+                        <!-- Col -->
+                        <!-- <div class="col-sm-6" *ngIf="f.roleId.value==2 || f.roleId.value==3">
+                            <div class="form-group">
+                                <label class="control-label">Company</label>
+                                <select formControlName="companyId"
+                                    class="form-control {{isSubmitting && f.companyId.errors && 'has-error'}}"
+                                    id="exampleFormControlSelect1">
+                                    <option value="">- Select Company -</option> -->
+                        <!-- <option *ngFor="let company of companiesList" value="{{company.id}}">
+                                        {{company.name}}</option> -->
+                        <!-- </select>
+                            </div>
+                        </div> -->
+
+                        <!-- <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Title</label>
+                                <input formControlName="title" type="text"
+                                    class="form-control {{isSubmitting && f.title.errors && 'has-error'}}"
+                                    placeholder="Enter Title">
+                            </div>
+                        </div> -->
+                        <!-- Col -->
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">First Name</label>
+                                <input formControlName="firstName" type="text" class="form-control "
+                                    value={{detail.first_name}} placeholder="Enter first name">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Last Name</label>
+                                <input formControlName="lastName" type="text" class="form-control "
+                                    value={{detail.last_name}} placeholder="Enter last name">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Email address</label>
+                                <input formControlName="email" type="email" class="form-control " value={{detail.email}}
+                                    placeholder="Enter email">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Password</label>
+                                <input formControlName="password" type="password" class="form-control "
+                                    value={{detail.email}} placeholder="Enter email">
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Gender</label>
+                                <div>
+                                    <div>
+                                        <input type="radio" formControlName="gender" value="Male"> Male
+                                    </div>
+
+                                    <div>
+                                        <input type="radio" formControlName="gender" value="Female"> Female
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Phone</label>
+                                <input formControlName="Phone" type="number" class="form-control "
+                                    value={{detail.phone}} placeholder="Enter phone number">
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">DOB</label>
+                                <input formControlName="dob" type="date" class="form-control" value={{detail.DOB}}>
+                            </div>
+                        </div>
+
+                    </div>
+                    <button type="submit" class="btn btn-primary submit">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
