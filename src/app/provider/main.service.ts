@@ -124,6 +124,34 @@ export class MainService {
     }
 
 
+    //Update User details
+    updateUser(endPointURL: any, data: any): Observable<any> {
+        let headers: any = {
+            'Content-Type': 'application/json',
+            'site-id': environment.siteId,
+            'x-sso-token': localStorage.getItem('hoppedin-admin-token')
+        }
+
+        console.log('Data', data)
+
+        // if (localStorage.getItem('hoppedin-admin-token')) {
+        //     headers = {
+        //         ...headers,
+
+        //     }
+        // }
+        const httpHeaders = {
+            headers: new HttpHeaders(headers)
+        }
+        return this.httpClient.patch(this.baseURL + endPointURL, data, httpHeaders)
+            .pipe(
+                tap(() => {
+                    this._refreshNeeded.next();
+                })
+            )
+    }
+
+
     // -----------------Delete user-------
 
     // // --------------- toastr service ----------------- //

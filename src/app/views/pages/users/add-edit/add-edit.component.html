@@ -1,7 +1,7 @@
 <nav class="page-breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a routerLink="/users">Users</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Add New User</li>
+        <li class="breadcrumb-item active" aria-current="page">Edit user</li>
     </ol>
 </nav>
 
@@ -51,13 +51,13 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-6">
+                        <!-- <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="control-label">Email address</label>
                                 <input formControlName="email" type="email" class="form-control " value={{detail.email}}
                                     placeholder="Enter email">
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="col-sm-6">
                             <div class="form-group">
@@ -86,10 +86,24 @@
 
 
 
-                        <div class="col-sm-6">
+                        <!-- <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="control-label">DOB</label>
-                                <input formControlName="dob" type="date" class="form-control" value={{detail.DOB}}>
+                                <input formControlName="dob" type="date" class="form-control" [(ngModel)]=}>
+                            </div>
+                        </div> -->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div>
+                                    <label class="control-label">DOB</label>
+
+                                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" formControlName="dob"
+                                        ngbDatepicker #d="ngbDatepicker"><button
+                                        class="control-label btn calendar btn-primary m-2 p-2" (click)="d.toggle()"
+                                        type="button">Date</button>
+
+                                </div>
+
                             </div>
                         </div>
 

@@ -3,6 +3,7 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { MainService } from "src/app/provider/main.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
+import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
     selector: 'app-user-add-edit',
@@ -15,7 +16,6 @@ export class UserAddEditComponent implements OnInit {
     id: any = '';
     detail: any = {};
     rolesList = [];
-
 
 
     userForm = new FormGroup({
@@ -70,22 +70,25 @@ export class UserAddEditComponent implements OnInit {
     submitForm() {
         this.isSubmitting = true;
         const formValues = this.userForm.value;
-        if (this.userForm.valid && ((!this.id && formValues.email && formValues.password) || this.id)) {
+        console.log('This is Date', this.userForm)
 
-            const apiURL = this.id ? `api/user/update` : `api/user/add`;
-            let params: any = {
-                companyId: formValues.companyId,
-                roleId: formValues.roleId,
-                title: formValues.title,
-                firstName: formValues.firstName,
-                lastName: formValues.lastName,
-            }
-            if (this.id) params = { ...params, id: this.id };
-            else params = { ...params, email: formValues.email, password: formValues.password };
-            this.mainService.postApi(apiURL, params).subscribe((res: any) => {
-                this.router.navigate(['users']);
-            })
+
+
+        const apiURL = `api/v1/users/updateUserDetails`
+        let params: any = {
+            firstName: formValues.firstName || this.detail.first_name,
+            lastName: formValues.lastName || this.detail.last_name,
+            gender: formValues.gender || this.detail.gender,
+            dob: formValues.dob || this.detail.dob,
+            phone: parseInt(formValues.Phone || this.detail.phone),
+            userId: this.id,
+            email: formValues.email || this.detail.email
         }
+
+        this.mainService.updateUser(apiURL, params).subscribe((res: any) => {
+            this.router.navigate(['users']);
+        })
+
     }
 
 }

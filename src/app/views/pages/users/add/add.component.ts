@@ -30,7 +30,6 @@ export class UserAdd implements OnInit {
     })
 
 
-
     constructor(
         private router: Router,
         private route: ActivatedRoute,
@@ -40,52 +39,36 @@ export class UserAdd implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.id = this.route.snapshot.queryParamMap.get('id');
-        this.getUserDetail()
+
 
     }
 
-    getUserDetail() {
-        const apiURL = `api/v1/users/detail`;
-
-        this.mainService.postApi(apiURL, { userId: this.id }).subscribe({
-            next: (res) => {
-                console.log('UserDetail', res)
-                this.detail = res;
-                console.log(this.detail.first_name)
-            },
-            error: (err) => {
-                console.log('ERROR', err)
-            }
-        })
-
-    }
 
 
     get f() {
         return this.userForm.controls;
     }
 
-
     submitForm() {
         this.isSubmitting = true;
         const formValues = this.userForm.value;
-        if (this.userForm.valid && ((!this.id && formValues.email && formValues.password) || this.id)) {
 
-            const apiURL = this.id ? `api/user/update` : `api/user/add`;
-            let params: any = {
-                companyId: formValues.companyId,
-                roleId: formValues.roleId,
-                title: formValues.title,
-                firstName: formValues.firstName,
-                lastName: formValues.lastName,
-            }
-            if (this.id) params = { ...params, id: this.id };
-            else params = { ...params, email: formValues.email, password: formValues.password };
-            this.mainService.postApi(apiURL, params).subscribe((res: any) => {
-                this.router.navigate(['users']);
-            })
+
+        const apiURL = `api/v1/users/add-user`;
+        let params: any = {
+            firstName: formValues.firstName,
+            lastName: formValues.lastName,
+            email: formValues.email,
+            password: formValues.password,
+            phone: formValues.Phone,
+            gender: formValues.gender,
+            dob: formValues.dob
         }
+
+        this.mainService.postApi(apiURL, params).subscribe((res: any) => {
+            this.router.navigate(['users']);
+        })
+
     }
 
 }
