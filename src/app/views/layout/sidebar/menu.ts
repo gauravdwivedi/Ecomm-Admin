@@ -24,6 +24,15 @@ export const MENU: MenuItem[] = [
         link: '/users/list'
       }
     ]
+  },
+  {
+    label: 'Lisitings',
+    icon: 'feather',
+    expanded: true,
+    subItems: [{
+      label: 'Category',
+      link: '/categories/list'
+    }]
   }
   // {
   //   label: 'Web Apps',

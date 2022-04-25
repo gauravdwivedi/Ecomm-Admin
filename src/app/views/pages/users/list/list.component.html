@@ -33,6 +33,7 @@
                                 <th>gender</th>
                                 <th>DOB</th>
                                 <th>Phone</th>
+                                <th>Status</th>
                                 <th>createdAt</th>
                             </tr>
                         </thead>
@@ -51,6 +52,16 @@
                                 <td>{{user.gender}}</td>
                                 <td>{{user.dob}}</td>
                                 <td>{{user.phone}}</td>
+                                <td *ngIf="user.status==0 then thenblk else elseblk"></td>
+                                <ng-template #thenblk>
+                                    <td>Not Active</td>
+                                </ng-template>
+                                <ng-template #elseblk>
+                                    <td>Active</td>
+                                </ng-template>
+
+
+
                                 <td>{{user.created_at|date:'d MMM, y'}}</td>
                                 <td>
                                     <!-- <a role="button" (click)="delete(user.id)"><i class="mr-2" data-feather="trash-2"

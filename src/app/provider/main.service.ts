@@ -78,19 +78,27 @@ export class MainService {
     deleteApi(endPointURL: any, data: any): Observable<any> {
         let headers: any = {
             'Content-Type': 'application/json',
-            'site-id': environment.siteId
+            'site-id': environment.siteId,
+            'x-sso-token': localStorage.getItem('hoppedin-admin-token')
+        }
 
+        let body: any = {
+            'userId': data
         }
-        if (localStorage.getItem('hoppedin-admin-token')) {
-            headers = {
-                ...headers,
-                token: localStorage.getItem('hoppedin-admin-token')
-            }
-        }
+
+        // if (localStorage.getItem('hoppedin-admin-token')) {
+        //     headers = {
+        //         ...headers,
+        //         token: localStorage.getItem('hoppedin-admin-token')
+        //     }
+        // }
+
+
         const httpHeaders = {
-            headers: new HttpHeaders(headers)
+            headers: new HttpHeaders(headers),
+            body
         }
-        return this.httpClient.delete(this.baseURL + endPointURL, data)
+        return this.httpClient.delete(this.baseURL + endPointURL, httpHeaders)
     }
 
     //-------Update -----

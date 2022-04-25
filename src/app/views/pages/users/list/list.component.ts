@@ -29,11 +29,10 @@ export class UsersListComponent implements OnInit {
         })
     }
 
-
-    delete(id: number) {
+    delete(userId: number) {
         if (confirm("Are you sure you want to delete it?")) {
-            const apiURL = `api/v1/users/deleteUser?id=${id}`;
-            this.mainService.deleteApi(apiURL, id).subscribe((res: any) => {
+            const apiURL = `api/v1/users/deleteUser`;
+            this.mainService.deleteApi(apiURL, userId).subscribe((res: any) => {
                 console.log(res)
                 this.getUsersList();
             })
