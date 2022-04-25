@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { FeahterIconModule } from '../../../core/feather-icon/feather-icon.module';
 
-import { NgbAccordionModule, NgbDropdownModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbDropdownModule, NgbTooltipModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UsersComponent } from './users.component';
 import { UsersListComponent } from './list/list.component';
 import { UserAddEditComponent } from './add-edit/add-edit.component';
@@ -48,7 +48,8 @@ const routes: Routes = [
         NgbDropdownModule,
         NgbTooltipModule,
         ReactiveFormsModule,
-        FormsModule
+        FormsModule,
+        NgbModule
     ]
 })
 export class UsersModule { }

@@ -92,21 +92,22 @@
 
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <div>
-                                    <label class="control-label">DOB</label>
-
+                                <label class="control-label">DOB</label>
+                                <div class="cal-btn">
                                     <input class="form-control" placeholder="yyyy-mm-dd" name="dp" formControlName="dob"
-                                        ngbDatepicker #d="ngbDatepicker"><button
-                                        class="control-label btn calendar btn-primary m-2 p-2" (click)="d.toggle()"
-                                        type="button">Date</button>
-
+                                        ngbDatepicker #d="ngbDatepicker">
+                                    <button class="control-label btn calendar btn-primary m-2 p-2" (click)="d.toggle()"
+                                        type="button"><i class="mr-2" data-feather="calendar" id="gfg"
+                                            appFeatherIcon></i></button>
                                 </div>
-
                             </div>
                         </div>
 
                     </div>
-                    <button type="submit" class="btn btn-primary submit">Save</button>
+                    <div class="d-flex justify-content-center mt-2">
+                        <button type="submit" class="btn btn-primary submit text-center">Add User</button>
+                    </div>
+
                 </form>
             </div>
         </div>
