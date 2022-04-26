@@ -43,8 +43,6 @@ export class UserAdd implements OnInit {
 
     }
 
-
-
     get f() {
         return this.userForm.controls;
     }
@@ -52,7 +50,6 @@ export class UserAdd implements OnInit {
     submitForm() {
         this.isSubmitting = true;
         const formValues = this.userForm.value;
-
 
         const apiURL = `api/v1/users/add-user`;
         let params: any = {

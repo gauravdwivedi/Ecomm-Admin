@@ -47,7 +47,6 @@ export class MainService {
 
         return this.httpClient.get(this.baseURL + endPointURL, httpHeaders)
 
-
     }
 
 
@@ -159,6 +158,20 @@ export class MainService {
             )
     }
 
+
+    // ---------------- upload Api Function ------------------- //
+    uploadApi(endPointURL: any, data: any): Observable<any> {
+        let headers: any = {
+            'Content-Type': 'application/json',
+            'site-id': environment.siteId,
+            'x-sso-token': localStorage.getItem('hoppedin-admin-token')
+        }
+
+        const httpHeaders = {
+            headers: new HttpHeaders(headers)
+        }
+        return this.httpClient.post(this.baseURL + endPointURL, data, httpHeaders)
+    }
 
     // -----------------Delete user-------
 

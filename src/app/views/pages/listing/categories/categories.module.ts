@@ -6,6 +6,9 @@ import { FeahterIconModule } from '../../../../core/feather-icon/feather-icon.mo
 import { NgbAccordionModule, NgbDropdownModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { CategoriesComponent } from './categories.component';
 import { CategoriesListComponent } from './list/list.component';
+import { CategoryEditComponent } from "./edit/edit.component"
+import { CategoryAddComponent } from './add/add.component';
+
 import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
@@ -23,12 +26,19 @@ const routes: Routes = [
                 path: 'list',
                 component: CategoriesListComponent
             },
+            {
+                path: 'edit',
+                component: CategoryEditComponent
+            }, {
+                path: 'add',
+                component: CategoryAddComponent
+            }
         ]
     }
 ]
 
 @NgModule({
-    declarations: [CategoriesComponent, CategoriesListComponent],
+    declarations: [CategoriesComponent, CategoriesListComponent, CategoryEditComponent],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),

@@ -9,6 +9,7 @@ import { environment } from '../../../../../../environments/environment';
     templateUrl: './list.component.html',
     styleUrls: ['./list.component.scss']
 })
+
 export class CategoriesListComponent implements OnInit {
 
     categoriesList: any;
@@ -34,21 +35,21 @@ export class CategoriesListComponent implements OnInit {
         })
     }
 
-    //   uploadIcon(e) {
-    //     if(e.target.files.length <= 0) return false;
-    //     this.icon = e.target.files[0];
-    //     this.categoryId = e.target.id;
-    //     let formData = new FormData();
-    //     formData.append('datafile', this.icon);
-    //     formData.append('id', this.categoryId);
-    //     const apiURL = 'api/v1/category/uploadicon';
-    //     this.mainService.showSpinner();
-    //     this.mainService.uploadApi(apiURL, formData).subscribe((res: any) => {
-    //       this.mainService.hideSpinner();
-    //       if(res && res.data){
-    //         this.router.navigate(['/categories/list']);
-    //       }
-    //       else this.error = 'There was some error importing the file. Please try again later.';
-    //     })
-    //   }
+    uploadIcon(e: any) {
+        if (e.target.files.length <= 0) return false;
+        this.icon = e.target.files[0];
+        this.categoryId = e.target.id;
+        let formData = new FormData();
+        formData.append('datafile', this.icon);
+        formData.append('id', this.categoryId);
+        const apiURL = 'api/v1/category/uploadicon';
+        this.mainService.showSpinner();
+        this.mainService.uploadApi(apiURL, formData).subscribe((res: any) => {
+            this.mainService.hideSpinner();
+            if (res && res.data) {
+                this.router.navigate(['/categories/list']);
+            }
+            else this.error = 'There was some error importing the file. Please try again later.';
+        })
+    }
 }

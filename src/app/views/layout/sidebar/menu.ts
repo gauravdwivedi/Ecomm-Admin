@@ -26,11 +26,11 @@ export const MENU: MenuItem[] = [
     ]
   },
   {
-    label: 'Lisitings',
+    label: 'Category',
     icon: 'feather',
     expanded: true,
     subItems: [{
-      label: 'Category',
+      label: 'List',
       link: '/categories/list'
     }]
   }

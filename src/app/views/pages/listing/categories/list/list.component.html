@@ -39,6 +39,24 @@
                                 <td>
                                     {{category.status}}
                                 </td>
+                                <td>
+                                    <!-- <a role="button" (click)="delete(user.id)"><i class="mr-2" data-feather="trash-2"
+                                            appFeatherIcon></i></a> -->
+                                    <!-- <a href="users/action?id={{user.id}}"><i class="mr-2" data-feather="edit"
+                                            appFeatherIcon></i></a> -->
+
+                                    <div ngbDropdown>
+                                        <a role="button" ngbDropdownToggle><i class="mr-2" data-feather="more-vertical"
+                                                id="gfg" appFeatherIcon></i></a>
+
+                                        <div ngbDropdownMenu="gfg">
+                                            <a href="categories/edit?id={{category.id}}" ngbDropdownItem>Edit </a>
+                                            <!-- <button ngbDropdownItem>Change
+                                                Role</button> -->
+                                            <button ngbDropdownItem>Delete</button>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -47,3 +65,12 @@
         </div>
     </div>
 </div>
+
+
+<nav class="settings-sidebar">
+    <div class="sidebar-body">
+        <a href="categories/add" class="settings-sidebar-toggler">
+            <i class="feather icon-plus"></i>
+        </a>
+    </div>
+</nav>

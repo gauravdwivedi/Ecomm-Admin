@@ -1,0 +1,66 @@
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/users">Category</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Add category</li>
+    </ol>
+</nav>
+
+<div class="row">
+    <div class="col-md-12 stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">Add Category</h6>
+                <form>
+                    <div class="row">
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Title</label>
+                                <input formControlName="firstName" type="text" class="form-control "
+                                    placeholder="Category Title">
+                            </div>
+                        </div>
+                        <!-- <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Icon</label>
+                                <input formControlName="firstName" type="text" class="form-control ">
+                            </div>
+                        </div> -->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Status</label>
+                                <div>
+                                    <div>
+                                        <input type="radio" formControlName="status" value="0"> Active
+                                    </div>
+
+                                    <div>
+                                        <input type="radio" formControlName="status" value="1"> Not Active
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">
+                                    Icon
+                                </label>
+                                <input type="file" #icon hidden (change)="uploadIcon($event)" />
+                                <button type="button" class="btn btn-outline-info btn-icon-text mr-2 d-none d-md-block"
+                                    (click)="icon.click()">
+                                    <i class="btn-icon-prepend" data-feather="upload" appFeatherIcon></i>
+                                    Icon
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary submit">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
