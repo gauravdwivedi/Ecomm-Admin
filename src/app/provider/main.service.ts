@@ -59,7 +59,8 @@ export class MainService {
         if (localStorage.getItem('hoppedin-admin-token')) {
             headers = {
                 ...headers,
-                token: localStorage.getItem('hoppedin-admin-token')
+                'x-sso-token': localStorage.getItem('hoppedin-admin-token')
+
             }
         }
         const httpHeaders = {
@@ -162,7 +163,7 @@ export class MainService {
     // ---------------- upload Api Function ------------------- //
     uploadApi(endPointURL: any, data: any): Observable<any> {
         let headers: any = {
-            'Content-Type': 'application/json',
+
             'site-id': environment.siteId,
             'x-sso-token': localStorage.getItem('hoppedin-admin-token')
         }

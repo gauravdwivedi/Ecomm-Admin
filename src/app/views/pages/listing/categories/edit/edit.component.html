@@ -1,6 +1,6 @@
 <nav class="page-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a routerLink="/users">Category</a></li>
+        <li class="breadcrumb-item"><a routerLink="/categories">Category</a></li>
         <li class="breadcrumb-item active" aria-current="page">Edit category</li>
     </ol>
 </nav>
@@ -12,12 +12,11 @@
                 <h6 class="card-title">Edit Category</h6>
                 <form [formGroup]="categoryForm">
                     <div class="row">
-
                         <div class="col-sm-6">
-                            <div class="form-group">
+                            <div class="form-group m-2 p-2">
                                 <label class="control-label">Title</label>
-                                <input formControlName="firstName" type="text" class="form-control "
-                                    value={{detail.first_name}} placeholder="Category Title">
+                                <input formControlName="title" type="text" class="form-control " value={{detail.title}}
+                                    placeholder="Category Title">
                             </div>
                         </div>
                         <!-- <div class="col-sm-6">
@@ -26,7 +25,7 @@
                                 <input formControlName="firstName" type="text" class="form-control ">
                             </div>
                         </div> -->
-                        <div class="col-sm-6">
+                        <!-- <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="control-label">Status</label>
                                 <div>
@@ -39,9 +38,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-sm-6">
-                            <div class="form-group">
+                            <div class="form-group m-2 p-2">
                                 <label class="control-label">
                                     Icon
                                 </label>
@@ -49,7 +48,7 @@
                                 <button type="button" class="btn btn-outline-info btn-icon-text mr-2 d-none d-md-block"
                                     (click)="icon.click()">
                                     <i class="btn-icon-prepend" data-feather="upload" appFeatherIcon></i>
-                                    Icon
+                                    upload
                                 </button>
                             </div>
                         </div>

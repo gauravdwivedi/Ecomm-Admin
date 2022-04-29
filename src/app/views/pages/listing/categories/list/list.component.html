@@ -24,9 +24,12 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let category of categoriesList">
+
                                 <td>{{category.id}}</td>
                                 <td>{{category.title}}</td>
-                                <td>
+                                <td><img *ngIf="category.icon" width="30" height="30"
+                                        src="{{envApiUrl}}{{category.icon}}" /></td>
+                                <!-- <td>
                                     <input type="file" data-id="{{category.id}}" #icon hidden />
                                     <button type="button"
                                         class="btn btn-outline-info btn-icon-text mr-2 d-none d-md-block"
@@ -34,23 +37,58 @@
                                         <i class="btn-icon-prepend" data-feather="upload" appFeatherIcon></i>
                                         Icon
                                     </button>
-                                </td>
+                                </td> -->
+                                <td *ngIf="category.status==1 then thenBlk else elseBlk">
 
-                                <td>
                                     {{category.status}}
                                 </td>
-                                <td>
-                                    <!-- <a role="button" (click)="delete(user.id)"><i class="mr-2" data-feather="trash-2"
-                                            appFeatherIcon></i></a> -->
-                                    <!-- <a href="users/action?id={{user.id}}"><i class="mr-2" data-feather="edit"
-                                            appFeatherIcon></i></a> -->
+                                <ng-template #thenBlk>
+                                    <td>Active</td>
+                                </ng-template>
 
+                                <ng-template #elseBlk>
+                                    <td>Not Active</td>
+                                </ng-template>
+
+
+                                <td>
+                                    <!-- <input type="file" name="icon-file" data-id="{{category.id}}" #icon hidden
+                                        (change)="uploadIcon($event)" /> -->
+                                    <!-- <button type="button"
+                                        class="btn btn-outline-info btn-icon-text mr-2 d-none d-md-block"
+                                        (click)="icon.click()">
+                                        <i class="btn-icon-prepend" data-feather="upload" appFeatherIcon></i>
+                                        Icon
+                                    </button> -->
+
+                                    <!-- <label btn btn-bwm>
+                                        <span>
+                                            Select Icon
+                                        </span>
+                                        <input #imageInput type="file" accept="image/*"
+                                            (change)="processFile(imageInput)">
+                                    </label> -->
+
+                                    <input type="file" data-id="{{category.id}}" name="icon"
+                                        accept="image/png, image/jpeg" #icon hidden (change)="uploadIcon($event)" />
+                                    <button type="button"
+                                        class="btn btn-outline-info btn-icon-text mr-2 d-none d-md-block"
+                                        (click)="icon.click()">
+                                        <i class="btn-icon-prepend" data-feather="upload" appFeatherIcon></i>
+                                        Icon
+                                    </button>
+                                </td>
+                                <!-- <a role="button" (click)="delete(user.id)"><i class="mr-2" data-feather="trash-2"
+                                            appFeatherIcon></i></a> -->
+                                <!-- <a href="users/action?id={{user.id}}"><i class="mr-2" data-feather="edit"
+                                            appFeatherIcon></i></a> -->
+                                <td>
                                     <div ngbDropdown>
                                         <a role="button" ngbDropdownToggle><i class="mr-2" data-feather="more-vertical"
                                                 id="gfg" appFeatherIcon></i></a>
 
                                         <div ngbDropdownMenu="gfg">
-                                            <a href="categories/edit?id={{category.id}}" ngbDropdownItem>Edit </a>
+                                            <!-- <a href="categories/edit?id={{category.id}}" ngbDropdownItem>Edit </a> -->
                                             <!-- <button ngbDropdownItem>Change
                                                 Role</button> -->
                                             <button ngbDropdownItem>Delete</button>

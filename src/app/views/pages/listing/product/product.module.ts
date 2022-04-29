@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { FeahterIconModule } from '../../../../core/feather-icon/feather-icon.module';
 
-import { NgbAccordionModule, NgbDropdownModule, NgbTooltipModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CategoriesComponent } from './categories.component';
-import { CategoriesListComponent } from './list/list.component';
-import { CategoryEditComponent } from "./edit/edit.component"
-import { CategoryAddComponent } from './add/add.component';
+import { NgbAccordionModule, NgbDropdownModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+// import { CategoriesComponent } from './categories.component';
+// import { CategoriesListComponent } from './list/list.component';
+// import { CategoryEditComponent } from "./edit/edit.component"
+// import { CategoryAddComponent } from './add/add.component';
+
 
 import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -15,7 +16,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 const routes: Routes = [
     {
         path: '',
-        component: CategoriesComponent,
+        component: ProductComponent,
         children: [
             {
                 path: '',
@@ -24,21 +25,14 @@ const routes: Routes = [
             },
             {
                 path: 'list',
-                component: CategoriesListComponent
-            },
-            {
-                path: 'edit',
-                component: CategoryEditComponent
-            }, {
-                path: 'add',
-                component: CategoryAddComponent
+                component: ProductListComponent
             }
         ]
     }
 ]
 
 @NgModule({
-    declarations: [CategoriesComponent, CategoriesListComponent, CategoryEditComponent, CategoryAddComponent],
+    declarations: [ProductComponent, ProductListComponent],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
@@ -47,8 +41,7 @@ const routes: Routes = [
         NgbDropdownModule,
         NgbTooltipModule,
         ReactiveFormsModule,
-        FormsModule,
-        NgbModule
+        FormsModule
     ]
 })
 export class CategoriesModule { }
