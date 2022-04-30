@@ -17,6 +17,7 @@ export class CategoryAddComponent implements OnInit {
     detail: any = '';
     icon: any = '';
     formData: any = '';
+    error: any = '';
 
     categoryForm = new FormGroup({
         title: new FormControl('', Validators.required),
@@ -45,18 +46,16 @@ export class CategoryAddComponent implements OnInit {
             .replace(/[^\w ]+/g, '')
             .replace(/ +/g, '-')
     }
-
     submitForm() {
         // e.preventDefault()
         this.isSubmiting = true;
         const formValues = this.categoryForm.value;
 
-
         const apiURL = `api/v1/category/add`;
 
         let params: any = {
             title: formValues.title,
-            icon: this.icon,
+            icon: 'https://img.icons8.com/fluency/48/000000/test-account.png',
             slug: this.convertToSlug(formValues.title)
         }
 

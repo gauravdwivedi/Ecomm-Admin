@@ -91,7 +91,7 @@
                                             <!-- <a href="categories/edit?id={{category.id}}" ngbDropdownItem>Edit </a> -->
                                             <!-- <button ngbDropdownItem>Change
                                                 Role</button> -->
-                                            <button ngbDropdownItem>Delete</button>
+                                            <button ngbDropdownItem (click)="delete(category.id)">Delete</button>
                                         </div>
                                     </div>
                                 </td>

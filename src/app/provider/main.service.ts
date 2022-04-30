@@ -82,6 +82,7 @@ export class MainService {
             'x-sso-token': localStorage.getItem('hoppedin-admin-token')
         }
 
+
         let body: any = {
             'userId': data
         }
@@ -100,6 +101,39 @@ export class MainService {
         }
         return this.httpClient.delete(this.baseURL + endPointURL, httpHeaders)
     }
+
+
+
+
+    // ----------------Delete Category------------------------- //
+    deleteCategoryApi(endPointURL: any, data: any): Observable<any> {
+        let headers: any = {
+            'Content-Type': 'application/json',
+            'site-id': environment.siteId,
+            'x-sso-token': localStorage.getItem('hoppedin-admin-token')
+        }
+
+
+        let body: any = {
+            'categoryId': data
+        }
+
+        // if (localStorage.getItem('hoppedin-admin-token')) {
+        //     headers = {
+        //         ...headers,
+        //         token: localStorage.getItem('hoppedin-admin-token')
+        //     }
+        // }
+
+
+        const httpHeaders = {
+            headers: new HttpHeaders(headers),
+            body
+        }
+        return this.httpClient.delete(this.baseURL + endPointURL, httpHeaders)
+    }
+
+
 
     //-------Update -----
 
@@ -172,6 +206,11 @@ export class MainService {
             headers: new HttpHeaders(headers)
         }
         return this.httpClient.post(this.baseURL + endPointURL, data, httpHeaders)
+            .pipe(
+                tap(() => {
+                    this._refreshNeeded.next();
+                })
+            )
     }
 
     // -----------------Delete user-------

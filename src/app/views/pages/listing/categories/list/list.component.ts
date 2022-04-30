@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { MainService } from 'src/app/provider/main.service';
 import { Router } from '@angular/router';
 import { environment } from '../../../../../../environments/environment';
-import { DomSanitizer } from '@angular/platform-browser'
+// import { DomSanitizer } from '@angular/platform-browser'
 
 
-class ImageSnippet {
-    constructor(public src: string, private domSanitizer: DomSanitizer) { }
-}
+// class ImageSnippet {
+//     constructor(public src: string, private domSanitizer: DomSanitizer) { }
+// }
 
 @Component({
     selector: 'app-categories-list',
@@ -65,6 +65,17 @@ export class CategoriesListComponent implements OnInit {
     // }
 
 
+    delete(categoryId: number) {
+        if (confirm("Are you sure want to delete this category ?")) {
+            const apiURL = `api/v1/category/delete`;
+            this.mainService.deleteCategoryApi(apiURL, categoryId).subscribe((res: any) => {
+                console.log('RESPONSE', res)
+                this.getCategoriesList();
+            })
+        }
+    }
+
+
     uploadIcon(e: any) {
         if (e.target.files.length <= 0) return false;
         this.icon = e.target.files[0];
@@ -76,10 +87,7 @@ export class CategoriesListComponent implements OnInit {
         // this.mainService.showSpinner();
         this.mainService.uploadApi(apiURL, formData).subscribe((res: any) => {
             // this.mainService.hideSpinner();
-            if (res && res.data) {
-
-            }
-            else this.error = 'There was some error importing the file. Please try again later.';
+            this.getCategoriesList();
         })
 
     }
