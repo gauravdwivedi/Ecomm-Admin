@@ -4,14 +4,13 @@ import { CommonModule } from '@angular/common';
 import { FeahterIconModule } from '../../../../core/feather-icon/feather-icon.module';
 
 import { NgbAccordionModule, NgbDropdownModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
-// import { CategoriesComponent } from './categories.component';
-// import { CategoriesListComponent } from './list/list.component';
-// import { CategoryEditComponent } from "./edit/edit.component"
-// import { CategoryAddComponent } from './add/add.component';
+import { ProductComponent } from './product.component';
 
 
 import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ProductListComponent } from './list/list.component';
+import { ProductAddComponent } from './add/add.component';
 
 const routes: Routes = [
     {
@@ -26,13 +25,17 @@ const routes: Routes = [
             {
                 path: 'list',
                 component: ProductListComponent
+            },
+            {
+                path: 'add',
+                component: ProductAddComponent
             }
         ]
     }
 ]
 
 @NgModule({
-    declarations: [ProductComponent, ProductListComponent],
+    declarations: [ProductComponent, ProductListComponent, ProductAddComponent],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
@@ -44,4 +47,4 @@ const routes: Routes = [
         FormsModule
     ]
 })
-export class CategoriesModule { }
+export class ProductModule { }

@@ -1,0 +1,62 @@
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink=".">Product</a></li>
+        <li class="breadcrumb-item active" aria-current="page">List</li>
+    </ol>
+</nav>
+
+
+<div class="row">
+    <div class="col-md-12 stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">All Categories</h6>
+
+                <div class="table-responsive">
+                    <table id="dataTableExample" class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Images</th>
+                                <th>Atrributes</th>
+                                <th>Category</th>
+                                <th>Video URL</th>
+                                <th>Rating</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let product of productList">
+                                <td>{{product.id}}</td>
+                                <td>{{product.title}}</td>
+                                <td *ngIf="product.images">
+                                    <div *ngFor="let image of product.images">
+                                        <img *ngIf="image.url" src="{{image.url}}" />
+                                    </div>
+                                </td>
+                                <td *ngFor="let attribute of product.attributes">
+                                    <div>Size : {{attribute.size}}</div>
+                                    <div>Color:{{attribute.color}}</div>
+                                    <div>Quantity:{{attribute.qty_in_stock}}</div>
+                                    <div>Price:{{attribute.price}}</div>
+                                    <div>Discounted Price:{{attribute.discounted_price}}</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<nav class="settings-sidebar">
+    <div class="sidebar-body">
+        <a href="product/add" class="settings-sidebar-toggler">
+            <i class="feather icon-plus"></i>
+        </a>
+    </div>
+</nav>

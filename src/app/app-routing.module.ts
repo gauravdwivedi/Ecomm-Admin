@@ -22,6 +22,9 @@ const routes: Routes = [
       {
         path: 'categories',
         loadChildren: () => import('./views/pages/listing/categories/categories.module').then(m => m.CategoriesModule)
+      }, {
+        path: 'product',
+        loadChildren: () => import('./views/pages/listing/product/product.module').then(m => m.ProductModule)
       },
       {
         path: 'apps',

@@ -1,0 +1,54 @@
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/users">Product</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Add product</li>
+    </ol>
+</nav>
+
+<div class="row">
+    <div class="col-md-12 stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">Product Title</h6>
+                <form [formGroup]="productForm" (submit)="submitForm()">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Title</label>
+                                <input formControlName="title" type=" text" class="form-control "
+                                    placeholder="Product Title">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Description</label>
+                                <input formControlName="title" type=" text" class="form-control "
+                                    placeholder="Description..">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Category</label>
+                                <select>
+                                    <optgroup>
+                                        <option>Cat 1</option>
+                                        <option>Cat 2</option>
+                                        <option>Cat 3</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary submit">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
