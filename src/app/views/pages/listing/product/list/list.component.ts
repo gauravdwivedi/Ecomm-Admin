@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MainService } from 'src/app/provider/main.service';
 import { Router } from '@angular/router';
 import { environment } from '../../../../../../environments/environment';
+
+import { MatAccordion } from '@angular/material/expansion';
 
 
 @Component({
@@ -24,16 +26,12 @@ export class ProductListComponent implements OnInit {
     offset: any = '0';
     limit: any = '20';
 
-
-
-
-
-
     constructor(public mainService: MainService, private router: Router) { }
 
     ngOnInit(): void {
         this.getProductList()
     }
+
 
 
     getProductList() {

@@ -10,13 +10,20 @@
         <div class="card">
             <div class="card-body">
                 <h6 class="card-title">Edit Category</h6>
-                <form [formGroup]="categoryForm">
+                <form [formGroup]="categoryForm" (submit)="save()">
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group m-2 p-2">
                                 <label class="control-label">Title</label>
                                 <input formControlName="title" type="text" class="form-control " value={{detail.title}}
                                     placeholder="Category Title">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group m-2 p-2">
+                                <label class="control-label">Slug</label>
+                                <input formControlName="slug" type="text" class="form-control " value={{detail.slug}}
+                                    placeholder="slug">
                             </div>
                         </div>
                         <!-- <div class="col-sm-6">
@@ -39,6 +46,10 @@
                                 </div>
                             </div>
                         </div> -->
+                        <div>
+                            <img class="icon" *ngIf="detail.icon" width="150" height="150"
+                                src="{{envApiUrl}}{{detail.icon}}" />
+                        </div>
                         <div class="col-sm-6">
                             <div class="form-group m-2 p-2">
                                 <label class="control-label">

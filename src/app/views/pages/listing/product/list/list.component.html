@@ -10,7 +10,7 @@
     <div class="col-md-12 stretch-card">
         <div class="card">
             <div class="card-body">
-                <h6 class="card-title">All Categories</h6>
+                <h6 class="card-title">All Products</h6>
 
                 <div class="table-responsive">
                     <table id="dataTableExample" class="table">
@@ -34,14 +34,31 @@
                                         <img *ngIf="image.url" src="{{image.url}}" />
                                     </div>
                                 </td>
-                                <td *ngFor="let attribute of product.attributes">
-                                    <div>Size : {{attribute.size}}</div>
-                                    <div>Color:{{attribute.color}}</div>
-                                    <div>Quantity:{{attribute.qty_in_stock}}</div>
-                                    <div>Price:{{attribute.price}}</div>
-                                    <div>Discounted Price:{{attribute.discounted_price}}</div>
+                                <td>
+                                    <thead>
+                                        <div class="d-flex flex-column">
+                                            <th class="p-2">Size</th>
+                                            <th class="p-2">Color</th>
+                                            <th class="p-2">Quantity</th>
+                                            <th class="p-2">Price</th>
+                                            <th class="p-2">Discounted Price</th>
+                                        </div>
+                                    </thead>
                                 </td>
-                            </tr>
+
+                                <td *ngFor="let attribute of product.attributes">
+                        <tbody>
+                            <div class="d-flex flex-column">
+                                <td class="p-2">{{attribute.size}}</td>
+                                <td class="p-2">{{attribute.color}}</td>
+                                <td class="p-2">{{attribute.qty_in_stock}}</td>
+                                <td class="p-2">{{attribute.price}}</td>
+                                <td class="p-2">{{attribute.discounted_price}}</td>
+                            </div>
+
+                        </tbody>
+                        </td>
+                        </tr>
                         </tbody>
                         <tbody>
                         </tbody>
