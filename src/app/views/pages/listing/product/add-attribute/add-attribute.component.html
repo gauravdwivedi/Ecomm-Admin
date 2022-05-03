@@ -1,0 +1,74 @@
+<div class="row m-4 p-4 ">
+    <div class="col-md-12 stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">Add Attributes</h6>
+                <div class="table-responsive">
+                    <form [formGroup]="pricingForm" (submit)="submitForm($event); pricingForm.reset();">
+                        <table id="dataTableExample" class="table">
+                            <thead>
+                                <tr>
+                                    <th>Size</th>
+                                    <th>Color</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+
+                                        <input formControlName="size" type="text"
+                                            class="form-control {{isSubmitting && f.size.errors && 'has-error'}}"
+                                            id="size">
+
+                                    </td>
+
+                                    <td>
+                                        <input formControlName="color" type="text"
+                                            class="form-control {{isSubmitting && f.color.errors && 'has-error'}}"
+                                            id="">
+
+                                    </td>
+                                    <td>
+                                        <input formControlName="price" type="text"
+                                            class="form-control {{isSubmitting && f.price.errors && 'has-error'}}"
+                                            id="price">
+                                    </td>
+                                    <!-- <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <div class="form-check">
+                                                    <label class="form-check-label">
+                                                        <input [checked]="(f.status.value == 1)"
+                                                            formControlName="status" type="radio" name="status"
+                                                            id="publish" [value]="1" class="form-check-input" /><i
+                                                            class="input-frame"></i> Publish
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <label class="form-check-label">
+                                                        <input [checked]="(f.status.value == 0)"
+                                                            formControlName="status" type="radio" name="status"
+                                                            id="draft" [value]="0" class="form-check-input" /><i
+                                                            class="input-frame"></i> Save as
+                                                        Draft
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <td>
+                                        <button type="submit" class="btn btn-primary submit">
+                                            <i class="btn-icon-save" data-feather="save" appFeatherIcon></i>
+                                            Save
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

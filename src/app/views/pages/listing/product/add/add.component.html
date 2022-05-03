@@ -10,13 +10,20 @@
         <div class="card">
             <div class="card-body">
                 <h6 class="card-title">Product Title</h6>
-                <form [formGroup]="productForm" (submit)="submitForm()">
+                <form [formGroup]="productForm" (submit)="submitForm($event)">
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="control-label">Title</label>
                                 <input formControlName="title" type=" text" class="form-control "
                                     placeholder="Product Title">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Video URL</label>
+                                <input formControlName="video_url" type=" text" class="form-control "
+                                    placeholder="Video URL">
                             </div>
                         </div>
                     </div>
@@ -27,24 +34,76 @@
                                 <input formControlName="title" type=" text" class="form-control "
                                     placeholder="Description..">
                             </div>
+
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Rating</label>
+                                <input formControlName="rating" type=" text" class="form-control " placeholder="rating">
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="control-label">Category</label>
-                                <select>
-                                    <optgroup>
-                                        <option>Cat 1</option>
-                                        <option>Cat 2</option>
-                                        <option>Cat 3</option>
-                                    </optgroup>
+                                <select formControlName="categorySelected">
+                                    <option *ngFor="let category of categoriesList">
+                                        {{category.title}}
+                                    </option>
                                 </select>
+                            </div>
+                        </div>
+                    </div> -->
+
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Slug</label>
+                                <input formControlName="slug" type=" text" class="form-control " placeholder="Slug">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <!-- <label class="control-label">Attributes</label> -->
+                                <input type="button" class="btn btn-outline-primary control-label"
+                                    (click)="assignComponent($event)" value="Add Attribute">
                             </div>
                         </div>
                     </div>
 
-                    <div class="d-flex justify-content-center">
+                    <ng-container *ngComponentOutlet="dummyComponent">
+
+                    </ng-container>
+
+                    <div class="row">
+                        <div class="btn-group me-2 d-none d-xl-block" ngbDropdown>
+                            <button class="btn btn-outline-primary" type="button" id="categoryList"
+                                ngbDropdownToggle>Category List</button>
+                            <div aria-labelledby="inboxDropdown2" ngbDropdownMenu>
+                                <a ngbDropdownItem href="" *ngFor="let category of categoriesList"
+                                    (click)="false">{{category.title}}</a>
+                                <div class="dropdown-divider"></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <!-- 
+                    <div class="form-group">
+                        <label for="file"></label>
+                        <input formControlName="file" id="file" type="file" class="form-control" multiple=""
+                            (change)="onFileChange($event)">
+                        <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+                            <div *ngIf="f.file.errors && f.file.errors.required">File is required.</div>
+                        </div>
+                    </div>
+                    <img *ngFor='let url of images' [src]="url" height="150" width="200px" style="margin: 3px;"> <br /> -->
+
+                    <div class="d-flex justify-content-center m-4 p-4">
                         <button type="submit" class="btn btn-primary submit">Save</button>
                     </div>
                 </form>

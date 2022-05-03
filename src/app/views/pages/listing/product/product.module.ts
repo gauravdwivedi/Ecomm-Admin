@@ -11,6 +11,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ProductListComponent } from './list/list.component';
 import { ProductAddComponent } from './add/add.component';
+import { AddAttribute } from './add-attribute/add-attribute.component'
 
 const routes: Routes = [
     {
@@ -29,13 +30,17 @@ const routes: Routes = [
             {
                 path: 'add',
                 component: ProductAddComponent
+            },
+            {
+                path: 'add-attribute',
+                component: AddAttribute
             }
         ]
     }
 ]
 
 @NgModule({
-    declarations: [ProductComponent, ProductListComponent, ProductAddComponent],
+    declarations: [ProductComponent, ProductListComponent, ProductAddComponent, AddAttribute],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
