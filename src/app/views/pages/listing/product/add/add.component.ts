@@ -26,6 +26,8 @@ export class ProductAddComponent implements OnInit {
     attributes: any = [];
     isAttributeAdding = false;
     apiUrl = environment.apiURL;
+    videos: string[] = [];
+    thumbnail: any = '';
     // categorySelected: any = '';
 
 
@@ -123,6 +125,53 @@ export class ProductAddComponent implements OnInit {
 
     }
 
+    async uploadVideo(e: any) {
+        if (e.target.files && e.target.files[0]) {
+            let noOfFiles = e.target.files.length;
+            console.log('No of FIles', noOfFiles)
+            let formData = new FormData();
+            for (let i = 0; i < noOfFiles; i++) {
+                formData.append('datafiles', e.target.files[i])
+            }
+
+            // this.thumbnail = await this.generateVideoThumbail(e.target.files[0])
+
+            const apiURL = 'api/v1/upload/files';
+            this.mainService.uploadApi(apiURL, formData).subscribe((res: any) => {
+                console.log(res)
+                this.images = res.result
+            })
+        }
+    }
+
+    // generateVideoThumbail(file: File) {
+    //     return new Promise((resolve) => {
+    //         const canvas = document.createElement("canvas");
+    //         const video = document.createElement("video");
+
+    //         video.autoplay = true;
+    //         video.muted = true;
+    //         video.src = URL.createObjectURL(file);
+
+    //         video.onloadeddata = () => {
+    //             let ctx = canvas.getContext("2d");
+
+    //             canvas.width = video.videoWidth;
+    //             canvas.height = video.height;
+
+    //             ctx?.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+    //             video.pause();
+    //             return resolve(canvas.toDataURL("image/png"));
+    //         }
+    //     })
+    // }
+
+    // capture() {
+    //     const canvas = document.createElement("canvas");
+    //     const video = document.createElement("video");
+
+    //     canvas.getContext('2d')?.drawImage(video, 0, 0, video.videoWidth, video.videoHeight)
+    // }
 
 
     getCatList() {
@@ -152,7 +201,6 @@ export class ProductAddComponent implements OnInit {
 
         this.categoryId = id
         this.categoryTitle = title
-
     }
 
     submitForm(e: any) {

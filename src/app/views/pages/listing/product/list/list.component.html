@@ -30,7 +30,7 @@
                                 <td>{{product.title}}</td>
                                 <td *ngIf="product.images">
                                     <div *ngFor="let image of product.images">
-                                        <img *ngIf="image.url" src="{{image.url}}" />
+                                        <img *ngIf="image.url" src="{{envApiUrl}}{{image.url}}" />
                                     </div>
                                 </td>
                                 <td>
