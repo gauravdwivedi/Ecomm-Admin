@@ -12,26 +12,26 @@
             <div class="card-body">
                 <h6 class="card-title">Product Title</h6>
                 <form [formGroup]="productForm" (submit)="submitForm($event)">
-                    <div class="row">
+                    <div class="row m-3">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="control-label">Title</label>
+                                <!-- <label class="control-label">Title</label> -->
                                 <input formControlName="title" type=" text" class="form-control "
                                     placeholder="Product Title">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="control-label">Video URL</label>
+                                <!-- <label class="control-label">Video URL</label> -->
                                 <input formControlName="video_url" type=" text" class="form-control "
                                     placeholder="Video URL">
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row m-3">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="control-label">Description</label>
+                                <!-- <label class="control-label">Description</label> -->
                                 <input formControlName="description" height="150px" type="text" class="form-control "
                                     placeholder="Description..">
                             </div>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="control-label">Rating</label>
+                                <!-- <label class="control-label">Rating</label> -->
                                 <input formControlName="rating" type=" text" class="form-control " placeholder="rating">
                             </div>
                         </div>
@@ -60,33 +60,36 @@
 
 
 
-                    <div class="row">
+                    <div class="row m-3">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="control-label">Slug</label>
+                                <!-- <label class="control-label">Slug</label> -->
                                 <input formControlName="slug" type=" text" class="form-control " placeholder="Slug">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class=" btn-group me-2  d-xl-block" ngbDropdown>
+                                <button class="btn btn-outline-primary" type="button" id="categoryList"
+                                    ngbDropdownToggle>Category List</button>
+                                <div aria-labelledby="inboxDropdown2" ngbDropdownMenu>
+                                    <button ngbDropdownItem *ngFor="let category of categoriesList"
+                                        (click)="catSelected($event,category.id,category.title)">
+                                        {{category.title}}
+                                    </button>
+                                </div>
+
+                                <div class="col-sm-4 m-3">
+                                    <div>Category</div>
+                                    <div *ngIf="categoryId">{{categoryTitle}}</div>
+                                </div>
                             </div>
                         </div>
 
 
                     </div>
 
-                    <div class="btn-group me-2  d-xl-block" ngbDropdown>
-                        <button class="btn btn-outline-primary" type="button" id="categoryList"
-                            ngbDropdownToggle>Category List</button>
-                        <div aria-labelledby="inboxDropdown2" ngbDropdownMenu>
-                            <button ngbDropdownItem *ngFor="let category of categoriesList"
-                                (click)="catSelected($event,category.id)">
-                                {{category.title}}
-                            </button>
-                        </div>
 
-                        <div class="col-sm-4 m-3">
-                            <div>Category</div>
-                            <div *ngIf="categoryId">{{categoryId}}</div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12">
+                    <div class="col-sm-6">
                         <div class="form-group">
                             <!-- <label class="control-label">Attributes</label> -->
                             <input type="button" class="btn btn-outline-primary m-3 control-label"
@@ -94,8 +97,24 @@
                         </div>
 
                         <ng-container *ngComponentOutlet="dummyComponent">
-
                         </ng-container>
+                        <table *ngIf="attributes.length>0" class="table">
+                            <thead>
+                                <tr>
+                                    <th>Size</th>
+                                    <th>Color</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of attributes">
+                                    <td>{{item.size}}</td>
+                                    <td>{{item.color}}</td>
+                                    <td>{{item.price}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
                     </div>
 
                     <!-- Image Upload 

@@ -21,6 +21,7 @@ export class ProductAddComponent implements OnInit {
     id: any = '';
     categoriesList: any = '';
     categoryId: any = '';
+    categoryTitle: string = '';
     images: string[] = [];
     attributes: any = [];
     isAttributeAdding = false;
@@ -58,6 +59,7 @@ export class ProductAddComponent implements OnInit {
         this._interactionService.dataTransfer$.subscribe(data => {
             console.log(data)
             this.attributes.push({ size: data.size, color: data.color, price: data.price })
+
             this.isAttributeAdding = false;
         })
         this.getCatList()
@@ -110,10 +112,12 @@ export class ProductAddComponent implements OnInit {
         }
     }
 
-    catSelected(e: Event, id: number) {
+    catSelected(e: Event, id: number, title: string) {
         e.preventDefault()
 
         this.categoryId = id
+        this.categoryTitle = title
+
     }
 
     submitForm(e: any) {
