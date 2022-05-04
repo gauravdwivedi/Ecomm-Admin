@@ -23,6 +23,7 @@ export class AddAttribute implements OnInit {
         price: new FormControl('', Validators.required),
         size: new FormControl('', Validators.required),
         color: new FormControl('', Validators.required),
+        qty: new FormControl('', Validators.required)
     });
 
     ngOnInit(): void {
@@ -51,7 +52,8 @@ export class AddAttribute implements OnInit {
         let params: any = {
             price: formValues.price,
             size: formValues.size,
-            color: formValues.color
+            color: formValues.color,
+            qty_in_stock: formValues.qty
         }
 
 

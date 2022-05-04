@@ -63,7 +63,7 @@ export class ProductAddComponent implements OnInit {
 
         this._interactionService.dataTransfer$.subscribe(data => {
             console.log(data)
-            this.attributes.push({ size: data.size, color: data.color, price: data.price })
+            this.attributes.push({ size: data.size, color: data.color, price: data.price, qty_in_stock: data.qty_in_stock })
 
             this.isAttributeAdding = false;
         })
@@ -127,6 +127,7 @@ export class ProductAddComponent implements OnInit {
 
     }
 
+
     async uploadVideo(e: any) {
         try {
             if (e.target.files && e.target.files[0]) {
@@ -137,13 +138,21 @@ export class ProductAddComponent implements OnInit {
                     formData.append('datafiles', e.target.files[i])
                     const cover = await this.getVideoCover(e.target.files[i])
                     console.log(cover)
-                    this.thumbnails[i] = cover;
+
+                    const coverBlob = cover as Blob;
+
+                    // this.thumbnails[i] = cover;
                     this.isThumbnail = true
+
+
+                    const reader = new FileReader();
+                    reader.readAsDataURL(coverBlob);
+                    reader.onload = _event => {
+                        this.thumbnails[i] = reader.result;
+                    }
+
                 }
-
                 // this.thumbnail = await this.generateVideoThumbail(e.target.files[0])
-
-
                 const apiURL = 'api/v1/upload/files';
                 this.mainService.uploadApi(apiURL, formData).subscribe((res: any) => {
                     console.log(res)
@@ -219,7 +228,7 @@ export class ProductAddComponent implements OnInit {
                     ctx?.drawImage(videoPlayer, 0, 0, canvas.width, canvas.height);
                     // return the canvas image as a blob
                     ctx?.canvas.toBlob(
-                        blob => {
+                        (blob) => {
                             resolve(blob);
                         },
                         "image/jpeg",

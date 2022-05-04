@@ -11,6 +11,7 @@
                                     <th>Size</th>
                                     <th>Color</th>
                                     <th>Price</th>
+                                    <th>Quantity</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -23,12 +24,16 @@
 
                                     <td>
                                         <input formControlName="color" type="text"
-                                            class="form-control {{isSubmitting && f.color.errors }}" id="">
+                                            class="form-control {{isSubmitting && f.color.errors }}" id="color">
 
                                     </td>
                                     <td>
                                         <input formControlName="price" type="text"
                                             class="form-control {{isSubmitting && f.price.errors }}" id="price">
+                                    </td>
+                                    <td>
+                                        <input formControlName="qty" type="text"
+                                            class="form-control {{isSubmitting && f.price.errors }}" id="qty">
                                     </td>
                                     <!-- <div class="row">
                                         <div class="col-sm-12">

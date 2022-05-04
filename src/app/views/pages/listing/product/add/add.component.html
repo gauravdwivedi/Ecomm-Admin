@@ -86,7 +86,7 @@
                     </div>
 
 
-                    <div class="col-sm-6">
+                    <div class="col-sm-8">
                         <div class="form-group">
                             <!-- <label class="control-label">Attributes</label> -->
                             <input type="button" class="btn btn-outline-primary m-3 control-label"
@@ -109,7 +109,7 @@
                                     <td>{{item.size}}</td>
                                     <td>{{item.color}}</td>
                                     <td>{{item.price}}</td>
-                                    <td>{{item.Quantity}}</td>
+                                    <td>{{item.qty_in_stock}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -139,9 +139,7 @@
                     </div>
                     <div *ngIf="isThumbnail">
                         <div *ngFor='let url of thumbnails'>
-                            <img src="data:image/png;base64,'.base64_encode($blob).'">
-
-
+                            <img src="{{url}}" height="150" width="200px" style="margin: 3px;">
                         </div>
                     </div>
 
