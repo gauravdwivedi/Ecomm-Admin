@@ -122,7 +122,7 @@
                         <div class="form-group">
                             <label for="file">Add Videos</label>
                             <input formControlName="file" id="file" type="file" class="form-control" multiple=""
-                                (change)="uploadVideo($event)">
+                                accept="video/*" (change)="uploadVideo($event)">
                             <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
                                 <div *ngIf="f.file.errors && f.file.errors.required">File is required.</div>
                             </div>
