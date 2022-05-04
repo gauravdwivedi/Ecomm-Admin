@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { AddAttribute } from "../add-attribute/add-attribute.component";
 import { InteractionService } from "../../../../../interaction.service";
 import { environment } from "src/environments/environment";
+
 @Component({
     selector: 'app-product-add',
     templateUrl: './add.component.html',
@@ -27,8 +28,9 @@ export class ProductAddComponent implements OnInit {
     isAttributeAdding = false;
     apiUrl = environment.apiURL;
     videos: string[] = [];
-    thumbnail: any = '';
-    // categorySelected: any = '';
+    isThumbnail: boolean = false;
+    thumbnails: any[] = [];
+
 
 
     addItems(newItem: any) {
@@ -126,22 +128,33 @@ export class ProductAddComponent implements OnInit {
     }
 
     async uploadVideo(e: any) {
-        if (e.target.files && e.target.files[0]) {
-            let noOfFiles = e.target.files.length;
-            console.log('No of FIles', noOfFiles)
-            let formData = new FormData();
-            for (let i = 0; i < noOfFiles; i++) {
-                formData.append('datafiles', e.target.files[i])
+        try {
+            if (e.target.files && e.target.files[0]) {
+                let noOfFiles = e.target.files.length;
+                console.log('No of FIles', noOfFiles)
+                let formData = new FormData();
+                for (let i = 0; i < noOfFiles; i++) {
+                    formData.append('datafiles', e.target.files[i])
+                    const cover = await this.getVideoCover(e.target.files[i])
+                    console.log(cover)
+                    this.thumbnails[i] = cover;
+                    this.isThumbnail = true
+                }
+
+                // this.thumbnail = await this.generateVideoThumbail(e.target.files[0])
+
+
+                const apiURL = 'api/v1/upload/files';
+                this.mainService.uploadApi(apiURL, formData).subscribe((res: any) => {
+                    console.log(res)
+                    this.images = res.result
+                })
             }
-
-            // this.thumbnail = await this.generateVideoThumbail(e.target.files[0])
-
-            const apiURL = 'api/v1/upload/files';
-            this.mainService.uploadApi(apiURL, formData).subscribe((res: any) => {
-                console.log(res)
-                this.images = res.result
-            })
+        } catch (err) {
+            console.log('Error!', err)
+            this.isThumbnail = false;
         }
+
     }
 
     // generateVideoThumbail(file: File) {
@@ -172,6 +185,50 @@ export class ProductAddComponent implements OnInit {
 
     //     canvas.getContext('2d')?.drawImage(video, 0, 0, video.videoWidth, video.videoHeight)
     // }
+
+    getVideoCover(file: File, seekTo = 0.0) {
+        console.log("getting video cover for file: ", file);
+        return new Promise((resolve, reject) => {
+            // load the file to a video player
+            const videoPlayer = document.createElement('video');
+            videoPlayer.setAttribute('src', URL.createObjectURL(file));
+            videoPlayer.load();
+            videoPlayer.addEventListener('error', (ex) => {
+                reject(ex);
+            });
+            // load metadata of the video to get video duration and dimensions
+            videoPlayer.addEventListener('loadedmetadata', () => {
+                // seek to user defined timestamp (in seconds) if possible
+                if (videoPlayer.duration < seekTo) {
+                    reject("video is too short.");
+                    return;
+                }
+                // delay seeking or else 'seeked' event won't fire on Safari
+                setTimeout(() => {
+                    videoPlayer.currentTime = seekTo;
+                }, 200);
+                // extract video thumbnail once seeking is complete
+                videoPlayer.addEventListener('seeked', () => {
+                    console.log('video is now paused at %ss.', seekTo);
+                    // define a canvas to have the same dimension as the video
+                    const canvas = document.createElement("canvas");
+                    canvas.width = videoPlayer.videoWidth;
+                    canvas.height = videoPlayer.videoHeight;
+                    // draw the video frame to canvas
+                    const ctx = canvas.getContext("2d");
+                    ctx?.drawImage(videoPlayer, 0, 0, canvas.width, canvas.height);
+                    // return the canvas image as a blob
+                    ctx?.canvas.toBlob(
+                        blob => {
+                            resolve(blob);
+                        },
+                        "image/jpeg",
+                        0.75 /* quality */
+                    );
+                });
+            });
+        });
+    }
 
 
     getCatList() {
