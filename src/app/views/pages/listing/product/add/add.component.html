@@ -4,6 +4,7 @@
         <li class="breadcrumb-item active" aria-current="page">Add product</li>
     </ol>
 </nav>
+<!-- <app-add-attribute (newItemEvent)="submitForm($event)"></app-add-attribute> -->
 
 <div class="row">
     <div class="col-md-12 stretch-card">
@@ -31,7 +32,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="control-label">Description</label>
-                                <input formControlName="title" type=" text" class="form-control "
+                                <input formControlName="description" height="150px" type="text" class="form-control "
                                     placeholder="Description..">
                             </div>
 
@@ -57,6 +58,8 @@
                     </div> -->
 
 
+
+
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
@@ -65,34 +68,37 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <!-- <label class="control-label">Attributes</label> -->
-                                <input type="button" class="btn btn-outline-primary control-label"
-                                    (click)="assignComponent($event)" value="Add Attribute">
-                            </div>
-                        </div>
+
                     </div>
 
-                    <ng-container *ngComponentOutlet="dummyComponent">
+                    <div class="btn-group me-2  d-xl-block" ngbDropdown>
+                        <button class="btn btn-outline-primary" type="button" id="categoryList"
+                            ngbDropdownToggle>Category List</button>
+                        <div aria-labelledby="inboxDropdown2" ngbDropdownMenu>
+                            <button ngbDropdownItem *ngFor="let category of categoriesList"
+                                (click)="catSelected($event,category.id)">
+                                {{category.title}}
+                            </button>
+                        </div>
 
-                    </ng-container>
-
-                    <div class="row">
-                        <div class="btn-group me-2 d-none d-xl-block" ngbDropdown>
-                            <button class="btn btn-outline-primary" type="button" id="categoryList"
-                                ngbDropdownToggle>Category List</button>
-                            <div aria-labelledby="inboxDropdown2" ngbDropdownMenu>
-                                <a ngbDropdownItem href="" *ngFor="let category of categoriesList"
-                                    (click)="false">{{category.title}}</a>
-                                <div class="dropdown-divider"></div>
-                            </div>
+                        <div class="col-sm-4 m-3">
+                            <div>Category</div>
+                            <div *ngIf="categoryId">{{categoryId}}</div>
                         </div>
                     </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <!-- <label class="control-label">Attributes</label> -->
+                            <input type="button" class="btn btn-outline-primary m-3 control-label"
+                                (click)="assignComponent($event)" value="Add Attribute">
+                        </div>
 
+                        <ng-container *ngComponentOutlet="dummyComponent">
 
+                        </ng-container>
+                    </div>
 
-                    <!-- 
+                    <!-- Image Upload 
                     <div class="form-group">
                         <label for="file"></label>
                         <input formControlName="file" id="file" type="file" class="form-control" multiple=""

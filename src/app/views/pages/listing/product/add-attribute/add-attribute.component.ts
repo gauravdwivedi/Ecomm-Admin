@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MainService } from 'src/app/provider/main.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Output, EventEmitter } from "@angular/core";
 import swal from "sweetalert2"
+import { InteractionService } from '../../../../../interaction.service'
 @Component({
     selector: 'app-add-attribute',
     templateUrl: './add-attribute.component.html',
@@ -16,8 +16,8 @@ export class AddAttribute implements OnInit {
     color: string;
     detail: any = [];
 
-
-    constructor(public mainService: MainService) { }
+    constructor(private _interactionService: InteractionService,
+        public mainService: MainService) { }
 
     pricingForm = new FormGroup({
         price: new FormControl('', Validators.required),
@@ -37,6 +37,7 @@ export class AddAttribute implements OnInit {
 
     //     });
     // }
+
     get f() {
         return this.pricingForm.controls;
     }
@@ -52,6 +53,11 @@ export class AddAttribute implements OnInit {
             size: formValues.size,
             color: formValues.color
         }
+
+
+        this._interactionService.sendData(params)
+
+
 
 
     }
