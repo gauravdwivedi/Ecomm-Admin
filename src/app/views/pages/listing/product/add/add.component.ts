@@ -5,7 +5,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AddAttribute } from "../add-attribute/add-attribute.component";
 import { InteractionService } from "../../../../../interaction.service";
-
+import { environment } from "src/environments/environment";
 @Component({
     selector: 'app-product-add',
     templateUrl: './add.component.html',
@@ -16,15 +16,16 @@ import { InteractionService } from "../../../../../interaction.service";
 
 export class ProductAddComponent implements OnInit {
 
-
     isSubmitting = false;
     id: any = '';
     categoriesList: any = '';
     categoryId: any = '';
     categoryTitle: string = '';
     images: string[] = [];
+    backendImagesPath: string[] = [];
     attributes: any = [];
     isAttributeAdding = false;
+    apiUrl = environment.apiURL;
     // categorySelected: any = '';
 
 
@@ -82,20 +83,54 @@ export class ProductAddComponent implements OnInit {
     //                     fileSouce: this.images
     //                 });
     //             }
+
+
+
     //             reader.readAsDataURL(event.target.files[i])
     //         }
     //     }
     // }
 
+    uploadFile(e: any) {
+        console.log(e.target.files)
+        if (e.target.files && e.target.files[0]) {
+            let noOfFiles = e.target.files.length;
+            console.log('No of FIles', noOfFiles)
+            let formData = new FormData();
+            for (let i = 0; i < noOfFiles; i++) {
+                formData.append('datafiles', e.target.files[i])
+            }
+            // formData.append('datafiles', e.target.files[0])
+            const apiURL = 'api/v1/upload/files';
+            this.mainService.uploadApi(apiURL, formData).subscribe((res: any) => {
+                console.log(res)
+                this.images = res.result
+            })
+
+            // for (let i = 0; i < noOfFiles; i++) {
+            //     let reader = new FileReader();
+            //     reader.onload = (event: any) => {
+            //         console.log(event.target.result);
+            //         this.images.push(event.target.result);
+            //         this.productForm.patchValue({
+            //             fileSouce: this.images
+            //         });
+            //     }
+
+
+            // }
+        }
+
+    }
+
+
 
     getCatList() {
         const apiURL = `api/v1/category/list`;
-        // this.mainService.showSpinner();
         this.mainService.getApi(apiURL).subscribe((res: any) => {
-            console.log('RESSS', res.result)
+
             this.categoriesList = res && res.result.length > 0 ? res.result : [];
-            console.log(this.categoriesList)
-            // this.mainService.hideSpinner();
+
         })
     }
 
@@ -127,7 +162,7 @@ export class ProductAddComponent implements OnInit {
         const formValues = this.productForm.value;
         console.log(formValues)
         let params: any = {
-            images: ["https://image1.com", "https://image3.com"],
+            images: this.images,
             title: formValues.title,
             description: formValues.description,
             category: this.categoryId,

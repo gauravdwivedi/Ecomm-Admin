@@ -1,6 +1,6 @@
 <nav class="page-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a routerLink="/users">Product</a></li>
+        <li class="breadcrumb-item"><a routerLink="/product">Product</a></li>
         <li class="breadcrumb-item active" aria-current="page">Add product</li>
     </ol>
 </nav>
@@ -117,16 +117,19 @@
 
                     </div>
 
-                    <!-- Image Upload 
+
                     <div class="form-group">
                         <label for="file"></label>
                         <input formControlName="file" id="file" type="file" class="form-control" multiple=""
-                            (change)="onFileChange($event)">
+                            (change)="uploadFile($event)">
                         <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
                             <div *ngIf="f.file.errors && f.file.errors.required">File is required.</div>
                         </div>
                     </div>
-                    <img *ngFor='let url of images' [src]="url" height="150" width="200px" style="margin: 3px;"> <br /> -->
+                    <div *ngFor='let url of images'>
+                        <img src="{{apiUrl}}{{url}}" height="150" width="200px" style="margin: 3px;">
+
+                    </div>
 
                     <div class="d-flex justify-content-center m-4 p-4">
                         <button type="submit" class="btn btn-primary submit">Save</button>
