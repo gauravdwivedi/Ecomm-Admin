@@ -17,4 +17,8 @@ export class InteractionService {
     this._data.next(data);
   }
 
+  sendDetail(data: any) {
+    this._data.next(data)
+  }
+
 }

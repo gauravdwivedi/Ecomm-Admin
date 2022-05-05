@@ -2,8 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MainService } from 'src/app/provider/main.service';
 import { Router } from '@angular/router';
 import { environment } from '../../../../../../environments/environment';
-
+import { InteractionService } from 'src/app/interaction.service';
 import { MatAccordion } from '@angular/material/expansion';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 
 @Component({
@@ -26,13 +27,51 @@ export class ProductListComponent implements OnInit {
     offset: any = '0';
     limit: any = '20';
 
-    constructor(public mainService: MainService, private router: Router) { }
+    constructor(private _interactionService: InteractionService, public mainService: MainService, private router: Router) { }
 
     ngOnInit(): void {
+
+        // if (document.querySelector('html')?.getAttribute('dir') === 'rtl') {
+
+        //     this.animationFadeoutExampleOptions.rtl = true;
+        //     this.basicExampleOptions.rtl = true;
+        // }
+
         this.getProductList()
     }
 
+    // productDetail(data: any) {
+    //     console.log(data)
 
+
+    //     this._interactionService.sendDetail(data)
+    //     this.router.navigateByUrl('/product/detail')
+    // }
+
+    // animationFadeoutExampleOptions: OwlOptions = {
+    //     animateOut: 'fadeOut',
+    //     items: 1,
+    //     margin: 30,
+    //     stagePadding: 30,
+    //     smartSpeed: 450
+    // }
+
+    // basicExampleOptions: OwlOptions = {
+    //     loop: true,
+    //     margin: 10,
+    //     nav: false,
+    //     responsive: {
+    //         0: {
+    //             items: 1
+    //         },
+    //         600: {
+    //             items: 3
+    //         },
+    //         1000: {
+    //             items: 4
+    //         }
+    //     }
+    // }
 
     getProductList() {
         // const apiURL = `api/v1/product/list?sort_by=${this.sort_by}&order=${this.order}&min_price=${this.min_price}

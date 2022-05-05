@@ -1,6 +1,6 @@
 <nav class="page-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a routerLink=".">Product</a></li>
+        <li class="breadcrumb-item"><a routerLink=".">Categories</a></li>
         <li class="breadcrumb-item active" aria-current="page">List</li>
     </ol>
 </nav>
@@ -10,58 +10,93 @@
     <div class="col-md-12 stretch-card">
         <div class="card">
             <div class="card-body">
-                <h6 class="card-title">All Products</h6>
+                <h6 class="card-title">All Categories</h6>
+
                 <div class="table-responsive">
                     <table id="dataTableExample" class="table">
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Title</th>
-                                <th>Images</th>
-                                <th>Atrributes</th>
                                 <th>Category</th>
-                                <th>Video URL</th>
-                                <th>Rating</th>
+                                <th>Description</th>
+
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let product of productList">
                                 <td>{{product.id}}</td>
                                 <td>{{product.title}}</td>
-                                <td *ngIf="product.images">
-                                    <div *ngFor="let image of product.images">
-                                        <img *ngIf="image.url" src="{{envApiUrl}}{{image.url}}" />
+                                <td>{{product.category.title}}</td>
+                                <td>{{product.description}}</td>
+                                <td>
+                                    <a class=" btn col-sm-6 col-md-4 col-lg-3"
+                                        href="product/detail?id={{product.id}}"><i data-feather="image"
+                                            appFeatherIcon></i>
+                                    </a>
+                                </td>
+
+                                <!-- <td><img *ngIf="product.icon" width="30" height="30"
+                                        src="{{envApiUrl}}{{product.icon}}" /></td> -->
+                                <!-- <td>
+                                    <input type="file" data-id="{{product.id}}" #icon hidden />
+                                    <button type="button"
+                                        class="btn btn-outline-info btn-icon-text mr-2 d-none d-md-block"
+                                        (click)="icon.click()">
+                                        <i class="btn-icon-prepend" data-feather="upload" appFeatherIcon></i>
+                                        Icon
+                                    </button>
+                                </td> -->
+                                <!-- <td *ngIf="product.status==1 then thenBlk else elseBlk">
+
+                                    {{product.status}}
+                                </td>
+                                <ng-template #thenBlk>
+                                    <td>Active</td>
+                                </ng-template>
+
+                                <ng-template #elseBlk>
+                                    <td>Not Active</td>
+                                </ng-template> -->
+
+
+
+                                <!-- <td>
+
+
+                                    <input type="file" data-id="{{product.id}}" name="icon"
+                                        accept="image/png, image/jpeg" #icon hidden />
+                                    <button type="button"
+                                        class="btn btn-outline-info btn-icon-text mr-2 d-none d-md-block"
+                                        (click)="icon.click()">
+                                        <i class="btn-icon-prepend" data-feather="upload" appFeatherIcon></i>
+                                        Icon
+                                    </button>
+                                </td> -->
+                                <!-- <a role="button" (click)="delete(user.id)"><i class="mr-2" data-feather="trash-2"
+                                            appFeatherIcon></i></a> -->
+                                <!-- <a href="users/action?id={{user.id}}"><i class="mr-2" data-feather="edit"
+                                            appFeatherIcon></i></a> -->
+                                <td>
+                                    <div ngbDropdown>
+                                        <a role="button" ngbDropdownToggle><i class="mr-2" data-feather="more-vertical"
+                                                id="gfg" appFeatherIcon></i></a>
+
+                                        <div ngbDropdownMenu="gfg">
+                                            <a href="product/edit?id={{product.id}}" ngbDropdownItem>Edit </a>
+                                            <!-- <button ngbDropdownItem>Change
+                                                Role</button> -->
+                                            <button ngbDropdownItem>Delete</button>
+                                        </div>
                                     </div>
                                 </td>
-                                <td>
-                                    <div class="d-flex flex-column">
-                                <th class="p-2">Size</th>
-                                <th class="p-2">Color</th>
-                                <th class="p-2">Quantity</th>
-                                <th class="p-2">Price</th>
-                                <th class="p-2">Discounted Price</th>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-
-                </td>
-                <td *ngFor="let attribute of product.attributes">
-
-                    <div class="d-flex flex-column">
-                <td class="p-2">{{attribute.size}}</td>
-                <td class="p-2">{{attribute.color}}</td>
-                <td class="p-2">{{attribute.qty_in_stock}}</td>
-                <td class="p-2">{{attribute.price}}</td>
-                <td class="p-2">{{attribute.discounted_price}}</td>
             </div>
-            </td>
-            </tr>
-            </tbody>
-            <tbody>
-            </tbody>
-            </table>
         </div>
     </div>
-</div>
-</div>
 </div>
 
 

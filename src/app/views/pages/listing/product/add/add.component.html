@@ -32,8 +32,8 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <!-- <label class="control-label">Description</label> -->
-                                <input formControlName="description" height="150px" type="text" class="form-control "
-                                    placeholder="Description..">
+                                <textarea formControlName="description" height="150px" type="text" class="form-control "
+                                    placeholder="Description.." rows="5"></textarea>
                             </div>
 
                         </div>
@@ -76,7 +76,7 @@
                                 </div>
 
                                 <div class="col-sm-4 m-3">
-                                    <div>Category</div>
+
                                     <div *ngIf="categoryId">{{categoryTitle}}</div>
                                 </div>
                             </div>
@@ -116,7 +116,7 @@
                     </div>
 
                     <div class="col-sm-6">
-                        <div class="form-group">
+                        <div class="form-group m-2 p-2">
                             <label for="file">Add Videos</label>
                             <input formControlName="file" id="file" type="file" class="form-control" multiple=""
                                 accept="video/*" (change)="uploadVideo($event)">
@@ -124,15 +124,16 @@
                                 <div *ngIf="f.file.errors && f.file.errors.required">File is required.</div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="file">Add Images</label>
-                        <input formControlName="file" id="file" type="file" class="form-control" multiple=""
-                            (change)="uploadFile($event)">
-                        <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
-                            <div *ngIf="f.file.errors && f.file.errors.required">File is required.</div>
+                        <div class="form-group m-2 p-2">
+                            <label for="file">Add Images</label>
+                            <input formControlName="file" id="file" type="file" class="form-control" multiple=""
+                                (change)="uploadFile($event)">
+                            <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+                                <div *ngIf="f.file.errors && f.file.errors.required">File is required.</div>
+                            </div>
                         </div>
                     </div>
+
                     <div *ngFor='let url of images'>
                         <img src="{{apiUrl}}{{url}}" height="150" width="200px" style="margin: 3px;">
 

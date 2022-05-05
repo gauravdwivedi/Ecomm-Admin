@@ -1,0 +1,48 @@
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink=".">Product</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Detail</li>
+    </ol>
+</nav>
+
+<div class="row">
+    <div class="col-md-6 grid-margin grid-margin-md-0 stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class=" d-flex justify-content-between">
+                    <h6 class="card-title">Product Title : {{title}}</h6>
+                    <div>
+                        <button class="btn"> <i data-feather="edit" appFeatherIcon></i></button>
+                        <a class="btn" href="/"> <i data-feather="trash-2" appFeatherIcon></i></a>
+                    </div>
+                </div>
+                <!-- <p class="text-muted mb-3">Category: {{productDetail.category.title}}</p> -->
+                <!-- <owl-carousel-o [options]="basicExampleOptions">
+                    <ng-template carouselSlide *ngFor="let image of productDetail.images">
+                        <img src="{{envApiUrl}}{{image.url}}">
+                    </ng-template>
+                </owl-carousel-o> -->
+
+                <h6 class="card-title">Attributes:</h6>
+                <!-- TODO::TABLE FROM ADD_ATTRIBUTE -->
+                <!-- <ul *ngFor="let attribute of productDetail.attributes">
+                    <li>
+                        <span class="m-2">Size : {{attribute.size}}</span>
+                        <span class="m-2">Color : {{attribute.color}}</span>
+                        <span class="m-2">Price : {{attribute.price}}</span>
+                        <span class="m-2">Quantity : {{attribute.qty_in_stock}}</span>
+                    </li>
+                </ul> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<nav class="settings-sidebar">
+    <div class="sidebar-body">
+        <a href="product/add" class="settings-sidebar-toggler">
+            <i class="feather icon-plus"></i>
+        </a>
+    </div>
+</nav>
