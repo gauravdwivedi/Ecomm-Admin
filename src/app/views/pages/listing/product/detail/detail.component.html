@@ -16,33 +16,26 @@
                         <a class="btn" href="/"> <i data-feather="trash-2" appFeatherIcon></i></a>
                     </div>
                 </div>
-                <!-- <p class="text-muted mb-3">Category: {{productDetail.category.title}}</p> -->
-                <!-- <owl-carousel-o [options]="basicExampleOptions">
-                    <ng-template carouselSlide *ngFor="let image of productDetail.images">
-                        <img src="{{envApiUrl}}{{image.url}}">
+                <p class="text-muted mb-3">Category: {{category.title}}</p>
+                <owl-carousel-o [options]="basicExampleOptions">
+                    <ng-template carouselSlide *ngFor="let image of images" class="ngTemplateClass">
+                        <button class="btn link-btn-icon" (click)="deleteImage(image.id)"><i class="img-delete-icon"
+                                data-feather="delete" appFeatherIcon></i></button>
+                        <img src="{{envApiUrl}}{{image.url}}" class="detail-img">
                     </ng-template>
-                </owl-carousel-o> -->
+                </owl-carousel-o>
 
-                <h6 class="card-title">Attributes:</h6>
-                <!-- TODO::TABLE FROM ADD_ATTRIBUTE -->
-                <!-- <ul *ngFor="let attribute of productDetail.attributes">
-                    <li>
-                        <span class="m-2">Size : {{attribute.size}}</span>
-                        <span class="m-2">Color : {{attribute.color}}</span>
-                        <span class="m-2">Price : {{attribute.price}}</span>
-                        <span class="m-2">Quantity : {{attribute.qty_in_stock}}</span>
-                    </li>
-                </ul> -->
+
             </div>
         </div>
     </div>
 </div>
 
-
+<!-- 
 <nav class="settings-sidebar">
     <div class="sidebar-body">
         <a href="product/add" class="settings-sidebar-toggler">
             <i class="feather icon-plus"></i>
         </a>
     </div>
-</nav>
+</nav> -->

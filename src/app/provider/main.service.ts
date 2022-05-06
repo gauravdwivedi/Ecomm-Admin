@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http"
-import { Observable, Subject } from "rxjs";
+import { Observable, Subject, BehaviorSubject } from "rxjs";
 import { Router } from "@angular/router";
 import { environment } from "src/environments/environment";
 import { tap } from "rxjs/operators";
+
 
 
 
@@ -16,10 +17,10 @@ export class MainService {
     public loginData = new Subject();
     public loginStatus = new Subject();
 
-
     constructor(public httpClient: HttpClient, private router: Router) {
 
     }
+
 
     private _refreshNeeded = new Subject<void>();
 
@@ -135,7 +136,7 @@ export class MainService {
 
 
 
-    //-------Update -----
+    //-------Update User -----
 
     update(endPointURL: any, data: any): Observable<any> {
         let headers: any = {
@@ -166,7 +167,11 @@ export class MainService {
     }
 
 
-    //Update User details
+
+
+
+
+    //Update details
     updateUser(endPointURL: any, data: any): Observable<any> {
         let headers: any = {
             'Content-Type': 'application/json',
@@ -194,6 +199,7 @@ export class MainService {
     }
 
 
+
     // ---------------- upload Api Function ------------------- //
     uploadApi(endPointURL: any, data: any): Observable<any> {
         let headers: any = {
@@ -206,6 +212,34 @@ export class MainService {
             headers: new HttpHeaders(headers)
         }
         return this.httpClient.post(this.baseURL + endPointURL, data, httpHeaders)
+            .pipe(
+                tap(() => {
+                    this._refreshNeeded.next();
+                })
+            )
+    }
+
+
+
+    // -----------Delete Product Image-------//
+
+    deleteImage(endPointURL: any, data: any): Observable<any> {
+        let headers: any = {
+
+            'site-id': environment.siteId,
+            'x-sso-token': localStorage.getItem('hoppedin-admin-token')
+        }
+
+        let body = {
+            id: data
+        }
+
+        console.log('Body', data)
+        const httpHeaders = {
+            headers: new HttpHeaders(headers),
+            body
+        }
+        return this.httpClient.delete(this.baseURL + endPointURL, httpHeaders)
             .pipe(
                 tap(() => {
                     this._refreshNeeded.next();

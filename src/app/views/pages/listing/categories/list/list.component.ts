@@ -75,7 +75,6 @@ export class CategoriesListComponent implements OnInit {
         }
     }
 
-
     uploadIcon(e: any) {
         if (e.target.files.length <= 0) return false;
         this.icon = e.target.files[0];

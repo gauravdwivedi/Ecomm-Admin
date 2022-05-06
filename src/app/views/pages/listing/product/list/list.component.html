@@ -1,6 +1,6 @@
 <nav class="page-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a routerLink=".">Categories</a></li>
+        <li class="breadcrumb-item"><a routerLink=".">Product</a></li>
         <li class="breadcrumb-item active" aria-current="page">List</li>
     </ol>
 </nav>
@@ -10,7 +10,7 @@
     <div class="col-md-12 stretch-card">
         <div class="card">
             <div class="card-body">
-                <h6 class="card-title">All Categories</h6>
+                <h6 class="card-title">All Products</h6>
 
                 <div class="table-responsive">
                     <table id="dataTableExample" class="table">
@@ -20,6 +20,7 @@
                                 <th>Title</th>
                                 <th>Category</th>
                                 <th>Description</th>
+                                <th>Slug</th>
 
                             </tr>
                         </thead>
@@ -29,9 +30,10 @@
                                 <td>{{product.title}}</td>
                                 <td>{{product.category.title}}</td>
                                 <td>{{product.description}}</td>
+                                <td>{{product.slug}}</td>
                                 <td>
                                     <a class=" btn col-sm-6 col-md-4 col-lg-3"
-                                        href="product/detail?id={{product.id}}"><i data-feather="image"
+                                        href="product/detail?slug={{product.slug}}"><i data-feather="image"
                                             appFeatherIcon></i>
                                     </a>
                                 </td>

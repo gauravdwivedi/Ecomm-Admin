@@ -1,0 +1,22 @@
+.img-delete-icon {
+    display: flex;
+    z-index: 1;
+    position: absolute;
+    cursor: pointer;
+    top: 10%;
+    right: 0;
+}
+
+.detail-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 2%;
+}
+
+.ngTemplateClass {
+    display: flex;
+}
+
+.link-btn-icon {
+    align-self: flex-start;
+}

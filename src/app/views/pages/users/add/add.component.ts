@@ -16,8 +16,6 @@ export class UserAdd implements OnInit {
     detail: any = {};
     rolesList = [];
 
-
-
     userForm = new FormGroup({
         // roleId: new FormControl('', [Validators.required]),
         firstName: new FormControl('', [Validators.required]),
@@ -39,8 +37,6 @@ export class UserAdd implements OnInit {
     ) { }
 
     ngOnInit(): void {
-
-
     }
 
     get f() {

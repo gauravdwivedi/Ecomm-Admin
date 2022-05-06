@@ -55,13 +55,7 @@ export class AddAttribute implements OnInit {
             color: formValues.color,
             qty_in_stock: formValues.qty
         }
-
-
         this._interactionService.sendData(params)
-
-
-
-
     }
 
 
