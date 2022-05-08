@@ -19,6 +19,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { CarouselComponent, CarouselModule } from 'ngx-owl-carousel-o';
+import { EditProduct } from './edit/edit.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -49,13 +50,17 @@ const routes: Routes = [
             , {
                 path: 'detail',
                 component: ProductDetail
+            },
+            {
+                path: 'edit',
+                component: EditProduct
             }
         ]
     }
 ]
 
 @NgModule({
-    declarations: [ProductComponent, ProductDetail, ProductListComponent, ProductAddComponent, AddAttribute],
+    declarations: [ProductComponent, ProductDetail, ProductListComponent, ProductAddComponent, AddAttribute, EditProduct],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),

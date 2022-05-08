@@ -37,6 +37,12 @@
                                             appFeatherIcon></i>
                                     </a>
                                 </td>
+                                <td>
+                                    <a class=" btn col-sm-6 col-md-4 col-lg-3"
+                                        href="product/detail?slug={{product.slug}}"><i data-feather="video"
+                                            appFeatherIcon></i>
+                                    </a>
+                                </td>
 
                                 <!-- <td><img *ngIf="product.icon" width="30" height="30"
                                         src="{{envApiUrl}}{{product.icon}}" /></td> -->
@@ -85,7 +91,7 @@
                                                 id="gfg" appFeatherIcon></i></a>
 
                                         <div ngbDropdownMenu="gfg">
-                                            <a href="product/edit?id={{product.id}}" ngbDropdownItem>Edit </a>
+                                            <a href="product/edit?slug={{product.slug}}" ngbDropdownItem>Edit </a>
                                             <!-- <button ngbDropdownItem>Change
                                                 Role</button> -->
                                             <button ngbDropdownItem>Delete</button>

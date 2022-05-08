@@ -8,12 +8,14 @@ import { InteractionService } from "../../../../../interaction.service";
 import { environment } from "src/environments/environment";
 
 @Component({
-    selector: 'app-product-add',
-    templateUrl: './add.component.html',
-    styleUrls: ['./add.component.scss']
+    selector: 'edit-product',
+    templateUrl: './edit.component.html',
+    styleUrls: ['./edit.component.scss']
 })
 
-export class ProductAddComponent implements OnInit {
+
+
+export class EditProduct implements OnInit {
 
     isSubmitting = false;
     id: any = '';
@@ -28,6 +30,22 @@ export class ProductAddComponent implements OnInit {
     videos: string[] = [];
     isThumbnail: boolean = false;
     thumbnails: any[] = [];
+
+
+    envApiUrl: any = environment.apiURL
+    title: string;
+    rating: number;
+    slug: any;
+    video_url: string;
+    description: string;
+    // id: any;
+    imagesDisplay: any;
+    // attributes: any;
+    category: any;
+    status: any;
+
+
+
 
     addItems(newItem: any) {
         this.attributes.push(newItem);
@@ -55,7 +73,14 @@ export class ProductAddComponent implements OnInit {
 
 
     ngOnInit(): void {
+        this.slug = this.route.snapshot.queryParamMap.get('slug');
 
+        console.log(this.slug)
+
+        this.mainService.refreshNeeded.subscribe(() => {
+            this.getProductDetail(this.slug)
+        })
+        this.getProductDetail(this.slug)
 
         this._interactionService.dataTransfer$.subscribe(data => {
             console.log(data)
@@ -91,6 +116,27 @@ export class ProductAddComponent implements OnInit {
     //     }
     // }
 
+
+    getProductDetail(slug: string) {
+        const apiURL = `api/v1/product/detail?slug=${slug}`;
+        this.mainService.getApi(apiURL).subscribe((res: any) => {
+            console.log('Detail Response', res.result)
+            if (res.status.message == 'success') {
+                this.title = res.result.title;
+                this.rating = res.result.rating;
+                // this.slug = res.result.slug;
+                this.video_url = res.result.video_url;
+                this.description = res.result.description;
+                this.id = res.result.id;
+                this.imagesDisplay = res.result.images;
+                this.attributes = res.result.attributes;
+                this.category = res.result.category;
+                this.status = res.result.status;
+            }
+        })
+
+    }
+
     uploadFile(e: any) {
         console.log(e.target.files)
         if (e.target.files && e.target.files[0]) {
@@ -116,9 +162,8 @@ export class ProductAddComponent implements OnInit {
             //             fileSouce: this.images
             //         });
             //     }
-
-
             // }
+
         }
 
     }
@@ -139,14 +184,11 @@ export class ProductAddComponent implements OnInit {
 
                     // this.thumbnails[i] = cover;
                     this.isThumbnail = true
-
-
                     const reader = new FileReader();
                     reader.readAsDataURL(coverBlob);
                     reader.onload = _event => {
                         this.thumbnails[i] = reader.result;
                     }
-
                 }
                 // this.thumbnail = await this.generateVideoThumbail(e.target.files[0])
                 const apiURL = 'api/v1/upload/files';
@@ -265,6 +307,16 @@ export class ProductAddComponent implements OnInit {
         this.categoryTitle = title
     }
 
+    saveAttributes() {
+        const apiURL = `api/v1/product/updateVariant`;
+
+
+        // this.mainService.postApi(apiURL,).subscribe((res: any) => {
+        //     console.log('Save Attributes', res)
+        // }
+        // )
+    }
+
     submitForm(e: any) {
         // e.preventDefault()
 
@@ -272,19 +324,19 @@ export class ProductAddComponent implements OnInit {
         const formValues = this.productForm.value;
         console.log(formValues)
         let params: any = {
-            images: this.images,
-            title: formValues.title,
-            description: formValues.description,
+            // images: this.images,
+            productId: this.id,
+            title: formValues.title || this.title,
+            description: formValues.description || this.description,
             category: this.categoryId,
-            video_url: formValues.video_url,
-            slug: formValues.slug,
-            attributes: this.attributes,
-            rating: formValues.rating
+            video_url: formValues.video_url || this.video_url,
+            slug: formValues.slug || this.slug,
+            rating: formValues.rating || this.rating
         }
 
         console.log('ADD product body', params)
 
-        const apiURL = `api/v1/product/add`
+        const apiURL = `api/v1/product/updateProduct`
         this.mainService.postApi(apiURL, params).subscribe((res) => {
             console.log('RESPONSE', res)
             if (res?.result) {

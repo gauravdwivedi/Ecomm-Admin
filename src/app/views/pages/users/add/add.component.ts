@@ -55,7 +55,8 @@ export class UserAdd implements OnInit {
             password: formValues.password,
             phone: formValues.Phone,
             gender: formValues.gender,
-            dob: formValues.dob
+            dob: formValues.dob,
+            status: 1
         }
 
         this.mainService.postApi(apiURL, params).subscribe((res: any) => {
