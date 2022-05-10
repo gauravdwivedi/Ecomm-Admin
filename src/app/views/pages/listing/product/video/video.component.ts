@@ -42,6 +42,7 @@ export class ProductVideoList implements OnInit {
     }
 
 
+
     getProductDetail(slug: any) {
         const apiURL = `api/v1/product/detail?slug=${slug}`;
         this.mainService.getApi(apiURL).subscribe((res: any) => {
@@ -53,7 +54,6 @@ export class ProductVideoList implements OnInit {
             }
         })
     }
-
 
 
     public blobToFile = (theBlob: Blob, fileName: string): File => {
@@ -68,17 +68,32 @@ export class ProductVideoList implements OnInit {
 
     async getThumbnailURL(blobUrl: any) {
 
-        try {
-            let formData = new FormData();
-            formData.append('datafiles', blobUrl)
-            const apiURL = 'api/v1/upload/files';
-            this.mainService.uploadApi(apiURL, formData).subscribe((res: any) => {
-                console.log('VIDEO UPLOAD RES', res)
+        console.log(blobUrl)
 
-            })
-        } catch (err) {
-            console.log('Error', err)
-        }
+        let file = this.blobToFile(blobUrl, 'temp');
+        console.log('FILE TYPE', file)
+
+        let formData = new FormData();
+        formData.append('datafiles', file)
+
+        const apiURL = `api/v1/upload/files`;
+
+        this.mainService.uploadApi(apiURL, formData).subscribe((res) => {
+            console.log('Thumbnail url', res)
+            this.thumbnails = res.result
+        })
+
+        // try {
+        //     let formData = new FormData();
+        //     formData.append('datafiles', blobUrl)
+        //     const apiURL = 'api/v1/upload/files';
+        //     this.mainService.uploadApi(apiURL, formData).subscribe((res: any) => {
+        //         console.log('VIDEO UPLOAD RES', res)
+
+        //     })
+        // } catch (err) {
+        //     console.log('Error', err)
+        // }
     }
 
     async uploadVideo(e: any) {
@@ -95,7 +110,7 @@ export class ProductVideoList implements OnInit {
                     const coverBlob = cover as Blob;
 
                     let blobUrl = URL.createObjectURL(coverBlob);
-                    // this.getThumbnailURL(blobUrl)
+                    this.getThumbnailURL(coverBlob)
 
 
                     const reader = new FileReader();
@@ -169,7 +184,6 @@ export class ProductVideoList implements OnInit {
             });
         });
     }
-
 
     get f() {
         return this.videoForm.controls;
