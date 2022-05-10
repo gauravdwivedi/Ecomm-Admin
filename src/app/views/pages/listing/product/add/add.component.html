@@ -20,13 +20,22 @@
                                     placeholder="Product Title">
                             </div>
                         </div>
-                        <div class="col-sm-6">
+
+                        <!-- <div class="col-sm-6">
                             <div class="form-group">
-                                <!-- <label class="control-label">Video URL</label> -->
+                                <label class="control-label">Video URL</label>
                                 <input formControlName="video_url" type=" text" class="form-control "
                                     placeholder="Video URL">
                             </div>
+                        </div> -->
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <!-- <label class="control-label">Rating</label> -->
+                                <input formControlName="rating" type=" text" class="form-control " placeholder="rating">
+                            </div>
                         </div>
+
                     </div>
                     <div class="row m-3">
                         <div class="col-sm-6">
@@ -39,10 +48,11 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <!-- <label class="control-label">Rating</label> -->
-                                <input formControlName="rating" type=" text" class="form-control " placeholder="rating">
+                                <!-- <label class="control-label">Slug</label> -->
+                                <input formControlName="slug" type=" text" class="form-control " placeholder="Slug">
                             </div>
                         </div>
+
                     </div>
                     <!-- <div class="row">
                         <div class="col-sm-6">
@@ -58,12 +68,7 @@
                     </div> -->
 
                     <div class="row m-3">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <!-- <label class="control-label">Slug</label> -->
-                                <input formControlName="slug" type=" text" class="form-control " placeholder="Slug">
-                            </div>
-                        </div>
+
                         <div class="col-sm-6">
                             <div class=" btn-group me-2  d-xl-block" ngbDropdown>
                                 <button class="btn btn-outline-primary" type="button" id="categoryList"
@@ -81,17 +86,21 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <!-- <label class="control-label">Attributes</label> -->
+                                <input type="button" class="btn btn-outline-primary control-label"
+                                    (click)="assignComponent($event)" value="Add Attribute">
+                            </div>
+                        </div>
+
 
 
                     </div>
 
 
                     <div class="col-sm-8">
-                        <div class="form-group">
-                            <!-- <label class="control-label">Attributes</label> -->
-                            <input type="button" class="btn btn-outline-primary m-3 control-label"
-                                (click)="assignComponent($event)" value="Add Attribute">
-                        </div>
+
 
                         <ng-container *ngComponentOutlet="dummyComponent">
                         </ng-container>

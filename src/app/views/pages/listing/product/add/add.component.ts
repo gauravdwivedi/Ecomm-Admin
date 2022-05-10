@@ -56,7 +56,6 @@ export class ProductAddComponent implements OnInit {
 
     ngOnInit(): void {
 
-
         this._interactionService.dataTransfer$.subscribe(data => {
             console.log(data)
             this.attributes.push({ size: data.size, color: data.color, price: data.price, qty_in_stock: data.qty_in_stock })
@@ -124,6 +123,18 @@ export class ProductAddComponent implements OnInit {
     }
 
 
+    async uploadThumbnails() {
+        try {
+
+
+
+
+        } catch (err) {
+            console.log('Error!', err)
+            this.isThumbnail = false;
+        }
+    }
+
     async uploadVideo(e: any) {
         try {
             if (e.target.files && e.target.files[0]) {
@@ -135,12 +146,12 @@ export class ProductAddComponent implements OnInit {
                     const cover = await this.getVideoCover(e.target.files[i])
                     console.log(cover)
 
+
+
                     const coverBlob = cover as Blob;
 
                     // this.thumbnails[i] = cover;
                     this.isThumbnail = true
-
-
                     const reader = new FileReader();
                     reader.readAsDataURL(coverBlob);
                     reader.onload = _event => {
@@ -148,6 +159,8 @@ export class ProductAddComponent implements OnInit {
                     }
 
                 }
+
+                console.log('FORMDATA', formData, 'THUMBNAILS', this.thumbnails)
                 // this.thumbnail = await this.generateVideoThumbail(e.target.files[0])
                 const apiURL = 'api/v1/upload/files';
                 this.mainService.uploadApi(apiURL, formData).subscribe((res: any) => {

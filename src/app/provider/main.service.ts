@@ -104,6 +104,37 @@ export class MainService {
     }
 
 
+    deleteProduct(endPointURL: any, data: any): Observable<any> {
+        let headers: any = {
+            'Content-Type': 'application/json',
+            'site-id': environment.siteId,
+            'x-sso-token': localStorage.getItem('hoppedin-admin-token')
+        }
+
+
+        let body: any = {
+            'id': data
+        }
+
+        // if (localStorage.getItem('hoppedin-admin-token')) {
+        //     headers = {
+        //         ...headers,
+        //         token: localStorage.getItem('hoppedin-admin-token')
+        //     }
+        // }
+
+
+        const httpHeaders = {
+            headers: new HttpHeaders(headers),
+            body
+        }
+        return this.httpClient.delete(this.baseURL + endPointURL, httpHeaders).pipe(
+            tap(() => {
+                this._refreshNeeded.next();
+            })
+        )
+    }
+
 
 
     // ----------------Delete Category------------------------- //

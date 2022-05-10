@@ -36,6 +36,9 @@ export class ProductListComponent implements OnInit {
         //     this.animationFadeoutExampleOptions.rtl = true;
         //     this.basicExampleOptions.rtl = true;
         // }
+        this.mainService.refreshNeeded.subscribe(() => {
+            this.getProductList()
+        })
 
         this.getProductList()
     }
@@ -72,6 +75,15 @@ export class ProductListComponent implements OnInit {
     //         }
     //     }
     // }
+
+    deleteProduct(id: any) {
+
+        const apiUrl = `api/v1/product/deleteProduct`;
+
+        this.mainService.deleteProduct(apiUrl, id).subscribe((res) => {
+            console.log(res)
+        })
+    }
 
     getProductList() {
         // const apiURL = `api/v1/product/list?sort_by=${this.sort_by}&order=${this.order}&min_price=${this.min_price}

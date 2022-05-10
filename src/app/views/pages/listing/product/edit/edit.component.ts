@@ -30,7 +30,7 @@ export class EditProduct implements OnInit {
     videos: string[] = [];
     isThumbnail: boolean = false;
     thumbnails: any[] = [];
-
+    apiSlug: any = '';
 
     envApiUrl: any = environment.apiURL
     title: string;
@@ -120,12 +120,12 @@ export class EditProduct implements OnInit {
     getProductDetail(slug: string) {
         const apiURL = `api/v1/product/detail?slug=${slug}`;
         this.mainService.getApi(apiURL).subscribe((res: any) => {
-            console.log('Detail Response', res.result)
+            console.log('Detail Response', res.result.images)
             if (res.status.message == 'success') {
                 this.title = res.result.title;
                 this.rating = res.result.rating;
-                // this.slug = res.result.slug;
-                this.video_url = res.result.video_url;
+                this.apiSlug = res.result.slug;
+                this.video_url = res.result.videos;
                 this.description = res.result.description;
                 this.id = res.result.id;
                 this.imagesDisplay = res.result.images;
@@ -134,11 +134,12 @@ export class EditProduct implements OnInit {
                 this.status = res.result.status;
             }
         })
-
     }
 
     uploadFile(e: any) {
         console.log(e.target.files)
+
+        let images = new Array();
         if (e.target.files && e.target.files[0]) {
             let noOfFiles = e.target.files.length;
             console.log('No of FIles', noOfFiles)
@@ -149,8 +150,13 @@ export class EditProduct implements OnInit {
             // formData.append('datafiles', e.target.files[0])
             const apiURL = 'api/v1/upload/files';
             this.mainService.uploadApi(apiURL, formData).subscribe((res: any) => {
-                console.log(res)
-                this.images = res.result
+                console.log('IMAGES URL', res)
+                for (let i = 0; i < res.result.length; i++) {
+                    console.log(res.result[i])
+                    images[i] = res.result[i]
+                    // this.images.push(res.result[i])
+                }
+                this.uploadImagestodb(images)
             })
 
             // for (let i = 0; i < noOfFiles; i++) {
@@ -164,10 +170,28 @@ export class EditProduct implements OnInit {
             //     }
             // }
 
-        }
 
+        }
     }
 
+
+    uploadImagestodb(images: any) {
+        const apiUrl = `api/v1/product/addProductImages`;
+
+
+        console.log('productID', this.id, 'images', images[0])
+
+
+
+        const params = {
+            productId: this.id,
+            images: images
+        }
+        console.log('Calling API call addProductImages', params)
+        this.mainService.postApi(apiUrl, params).subscribe((res) => {
+            console.log('IMAGE ADD RES', res)
+        })
+    }
 
     async uploadVideo(e: any) {
         try {
@@ -193,7 +217,7 @@ export class EditProduct implements OnInit {
                 // this.thumbnail = await this.generateVideoThumbail(e.target.files[0])
                 const apiURL = 'api/v1/upload/files';
                 this.mainService.uploadApi(apiURL, formData).subscribe((res: any) => {
-                    console.log(res)
+                    console.log('VIDEO UPLOAD RES', res)
                     this.images = res.result
                 })
             }
@@ -201,7 +225,25 @@ export class EditProduct implements OnInit {
             console.log('Error!', err)
             this.isThumbnail = false;
         }
+    }
 
+    updateVideoUrlDb(videoUrl: any, name: any, thumbnail: any, description: any, slug: any) {
+        const apiUrl = `api/v1/product/addProductVideo`;
+
+        const params = {
+            productId: this.id,
+            video: {
+                url: videoUrl,
+                name: name,
+                thumbnail: thumbnail,
+                description: description,
+                slug: slug
+            }
+        }
+        console.log('Calling API call addVideo', params)
+        this.mainService.postApi(apiUrl, params).subscribe((res) => {
+            console.log('Video ADD RES', res)
+        })
     }
 
     // generateVideoThumbail(file: File) {
