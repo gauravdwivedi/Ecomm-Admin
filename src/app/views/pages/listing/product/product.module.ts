@@ -14,6 +14,7 @@ import { ProductListComponent } from './list/list.component';
 import { ProductAddComponent } from './add/add.component';
 import { AddAttribute } from './add-attribute/add-attribute.component'
 // import { ProductList } from './product-list/product-list.component';
+import { productVideoList } from './product-list/product-list.component';
 import { ProductVideoList } from './video/video.component'
 import { ProductDetail } from "./detail/detail.component"
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
@@ -58,13 +59,17 @@ const routes: Routes = [
             }, {
                 path: 'video',
                 component: ProductVideoList
+            },
+            {
+                path: 'video-list',
+                component: productVideoList
             }
         ]
     }
 ]
 
 @NgModule({
-    declarations: [ProductComponent, ProductVideoList, ProductDetail, ProductListComponent, ProductAddComponent, AddAttribute, EditProduct],
+    declarations: [ProductComponent, ProductVideoList, productVideoList, ProductDetail, ProductListComponent, ProductAddComponent, AddAttribute, EditProduct],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),

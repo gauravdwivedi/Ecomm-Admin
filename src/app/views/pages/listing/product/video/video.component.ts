@@ -4,6 +4,8 @@ import { ActivatedRoute, Route, Router } from "@angular/router";
 import { environment } from "src/environments/environment";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { productVideoList } from "../product-list/product-list.component";
+import { InteractionService } from "src/app/interaction.service";
 
 
 @Component({
@@ -22,8 +24,12 @@ export class ProductVideoList implements OnInit {
     title: any;
     videoUrl: string[] = [];
     thumbnails: any;
+    productVideoList: any;
 
-    constructor(private mainService: MainService, private route: ActivatedRoute, private router: Router) { }
+    constructor(private mainService: MainService,
+        private route: ActivatedRoute, private router: Router,
+        private _interactionService: InteractionService
+    ) { }
 
 
     videoForm = new FormGroup({
@@ -39,6 +45,8 @@ export class ProductVideoList implements OnInit {
     ngOnInit(): void {
         this.slug = this.route.snapshot.queryParamMap.get('slug');
         this.getProductDetail(this.slug)
+
+        this.productVideoList = productVideoList
     }
 
 

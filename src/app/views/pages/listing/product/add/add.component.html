@@ -93,15 +93,10 @@
                                     (click)="assignComponent($event)" value="Add Attribute">
                             </div>
                         </div>
-
-
-
                     </div>
 
 
                     <div class="col-sm-8">
-
-
                         <ng-container *ngComponentOutlet="dummyComponent">
                         </ng-container>
                         <table *ngIf="attributes.length>0" class="table">
@@ -125,14 +120,14 @@
                     </div>
 
                     <div class="col-sm-6">
-                        <div class="form-group m-2 p-2">
+                        <!-- <div class="form-group m-2 p-2">
                             <label for="file">Add Videos</label>
                             <input formControlName="file" id="file" type="file" class="form-control" multiple=""
                                 accept="video/*" (change)="uploadVideo($event)">
                             <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
                                 <div *ngIf="f.file.errors && f.file.errors.required">File is required.</div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="form-group m-2 p-2">
                             <label for="file">Add Images</label>
                             <input formControlName="file" id="file" type="file" class="form-control" multiple=""
