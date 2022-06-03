@@ -92,8 +92,8 @@ export class ProductListComponent implements OnInit {
 
         const apiURL = `api/v1/product/list`;
         this.mainService.getApi(apiURL).subscribe((res: any) => {
-            if (res && res.result.length > 0) {
-                this.productList = res.result
+            if (res && res.result.list.length > 0) {
+                this.productList = res.result.list
                 console.log(this.productList)
             }
         })

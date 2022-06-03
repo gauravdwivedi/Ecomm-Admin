@@ -370,7 +370,7 @@ export class EditProduct implements OnInit {
             productId: this.id,
             title: formValues.title || this.title,
             description: formValues.description || this.description,
-            category: this.categoryId,
+            category: formValues.categorySelected || this.categoryId,
             video_url: formValues.video_url || this.video_url,
             slug: formValues.slug || this.slug,
             rating: formValues.rating || this.rating
