@@ -103,7 +103,6 @@ export class ProductDetail implements OnInit {
 
     }
 
-
     saveEditAttribute(id: any) {
         console.log(this.editSize)
         console.log(this.editColor)
@@ -140,8 +139,6 @@ export class ProductDetail implements OnInit {
         this.enableEdit = false;
         this.enableEditIndex = null
     }
-
-
 
     openEditAttributes(content: TemplateRef<any>,) {
         this.modalService.open(content, { centered: true }).result.then((result) => {

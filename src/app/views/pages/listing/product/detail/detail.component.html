@@ -42,9 +42,6 @@
                     </div>
                 </div> -->
 
-
-
-
                 <table *ngIf="attributes.length>0" class="table">
                     <thead>
                         <tr>
@@ -66,7 +63,6 @@
 
                                 <ng-template #tableSize>{{item.size}}</ng-template>
                             </td>
-
 
                             <td><span *ngIf="enableEdit && enableEditIndex=== item.id; else tableColor"><input
                                         class="form-control" ngModel="{{item.color}}"
