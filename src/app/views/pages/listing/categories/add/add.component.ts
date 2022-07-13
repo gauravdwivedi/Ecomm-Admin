@@ -10,7 +10,6 @@ import { ActivatedRoute, Router } from "@angular/router";
     styleUrls: ['./add.component.scss']
 })
 
-
 export class CategoryAddComponent implements OnInit {
     isSubmiting = false;
     id: any = '';
@@ -40,12 +39,12 @@ export class CategoryAddComponent implements OnInit {
         return this.categoryForm.controls;
     }
 
-
     convertToSlug(slug: string) {
         return slug.toLocaleLowerCase()
             .replace(/[^\w ]+/g, '')
             .replace(/ +/g, '-')
     }
+
     submitForm() {
         // e.preventDefault()
         this.isSubmiting = true;
@@ -59,11 +58,9 @@ export class CategoryAddComponent implements OnInit {
             slug: this.convertToSlug(formValues.title)
         }
 
-        console.log(params)
-
         this.mainService.postApi(apiURL, params).subscribe((res: any) => {
             console.log(res)
-            if (res[0] && res[1]) {
+            if (res) {
                 this.router.navigate(['categories']);
             }
         })
