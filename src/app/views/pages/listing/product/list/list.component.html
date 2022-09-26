@@ -5,23 +5,21 @@
     </ol>
 </nav>
 
-
 <div class="row">
-    <div class="col-md-12 stretch-card">
+    <div class="col-md-12 ">
         <div class="card">
             <div class="card-body">
                 <h6 class="card-title">All Products</h6>
 
-                <div class="table-responsive">
-                    <table id="dataTableExample" class="table">
+                <div>
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Title</th>
                                 <th>Category</th>
-                                <th>Description</th>
+                                <!-- <th>Description</th> -->
                                 <th>Slug</th>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -29,7 +27,8 @@
                                 <td>{{product.id}}</td>
                                 <td>{{product.title}}</td>
                                 <td>{{product.category.title}}</td>
-                                <td>{{product.description}}</td>
+                                <!-- <td id="desc">
+                                    {{product.description}}</td> -->
                                 <td>{{product.slug}}</td>
                                 <td>
                                     <a class=" btn col-sm-6 col-md-4 col-lg-3"

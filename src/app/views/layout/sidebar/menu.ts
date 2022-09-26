@@ -41,6 +41,17 @@ export const MENU: MenuItem[] = [
       label: 'List',
       link: '/product/list'
     }]
+  },
+  {
+    label:'Orders',
+    icon:'archive',
+    expanded:true,
+    subItems:[
+      {
+        label:'List',
+        link:'/orders/list'
+      }
+    ]
   }
   // {
   //   label: 'Web Apps',

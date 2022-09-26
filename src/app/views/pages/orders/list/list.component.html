@@ -1,0 +1,52 @@
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink=".">Orders</a></li>
+        <li class="breadcrumb-item active" aria-current="page">List</li>
+    </ol>
+</nav>
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Orders List</h4>
+                <!-- <p class="card-description mb-0">Manage users</p> -->
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">All Orders</h6>
+                <div class="">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>UserId</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let order of orderList">
+                                <td>{{order.id}}</td>
+                                <td>{{order.userId}}</td>
+                                <td>{{order.status}}</td>
+                                <td><div ngbDropdown>
+                                    <a role="button" ngbDropdownToggle><i class="mr-2" data-feather="more-vertical"
+                                        id="gfg" appFeatherIcon></i></a>
+                                </div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
