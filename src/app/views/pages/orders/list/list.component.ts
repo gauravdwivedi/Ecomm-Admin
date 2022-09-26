@@ -21,15 +21,23 @@ envAPiUrl:any=environment.apiURL;
         this.mainService.refreshNeeded.subscribe(()=>{
             this.getOrderList()
         })
-
         this.getOrderList();
     }
 
     changeOrderStatus(id:string,new_status:string){
-        
+            console.log('ID',id,new_status)
+
+            if(confirm(`Are you sure want to change the status to ${new_status}`)){
+                const apiURL=`api/v1/orders/change-status`;
+                const data={
+                    id,status:new_status
+                }
+                this.mainService.postApi(apiURL,data).subscribe((res:any)=>{
+                    console.log(res);
+                    //update list here 
+                })
+            }
     }
-
-
 
     getOrderList(){
         const apiURL =`api/v1/orders/allorders`;

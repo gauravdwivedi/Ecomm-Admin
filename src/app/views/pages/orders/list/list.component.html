@@ -39,7 +39,15 @@
                                 <td><div ngbDropdown>
                                     <a role="button" ngbDropdownToggle><i class="mr-2" data-feather="more-vertical"
                                         id="gfg" appFeatherIcon></i></a>
-                                </div></td>
+
+                                        <div ngbDropdownMenu="gfg">
+                                            <button (click)="changeOrderStatus(order.id,'Cancel')">Cancel</button>
+                                            <button (click)="changeOrderStatus(order.id,'Delivered')">Delivered</button>
+
+
+                                        </div>
+                                </div>
+                            </td>
                             </tr>
                         </tbody>
                     </table>
