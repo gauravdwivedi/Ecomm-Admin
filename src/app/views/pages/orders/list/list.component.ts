@@ -34,7 +34,6 @@ envAPiUrl:any=environment.apiURL;
                 }
                 this.mainService.postApi(apiURL,data).subscribe((res:any)=>{
                     console.log(res);
-                    //update list here 
                 })
             }
     }

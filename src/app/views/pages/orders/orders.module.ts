@@ -9,6 +9,7 @@ import { OrdersComponent} from "./orders.component";
 import { OrderListComponent } from "./list/list.component";
 import { Routes,RouterModule } from "@angular/router";
 import { ReactiveFormsModule,FormsModule } from "@angular/forms";
+import { OrderDetailComponent } from "./detail/detail.component";
 
 
 const routes: Routes=[
@@ -24,6 +25,9 @@ const routes: Routes=[
             {
                 path:'list',
                 component:OrderListComponent
+            },{
+                path:'detail',
+                component:OrderDetailComponent
             }
         ]
         
@@ -33,7 +37,7 @@ const routes: Routes=[
 
 
 @NgModule({
-    declarations:[OrdersComponent,OrderListComponent],
+    declarations:[OrdersComponent,OrderListComponent,OrderDetailComponent],
     imports:[
         CommonModule,
         RouterModule.forChild(routes),
