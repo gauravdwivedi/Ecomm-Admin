@@ -38,7 +38,7 @@ export class MainService {
         if (localStorage.getItem('hoppedin-admin-token')) {
             headers = {
                 ...headers,
-                token: localStorage.getItem('hoppedin-admin-token')
+                'x-sso-token': localStorage.getItem('hoppedin-admin-token')
             }
         }
 

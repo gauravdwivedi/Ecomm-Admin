@@ -25,8 +25,6 @@ envAPiUrl:any=environment.apiURL;
     }
 
     changeOrderStatus(id:string,new_status:string){
-            console.log('ID',id,new_status)
-
             if(confirm(`Are you sure want to change the status to ${new_status}`)){
                 const apiURL=`api/v1/orders/change-status`;
                 const data={
@@ -35,8 +33,7 @@ envAPiUrl:any=environment.apiURL;
                 this.mainService.postApi(apiURL,data).subscribe((res:any)=>{
                     console.log(res);
                 })
-            }
-    }
+            }}
 
     getOrderList(){
         const apiURL =`api/v1/orders/allorders`;

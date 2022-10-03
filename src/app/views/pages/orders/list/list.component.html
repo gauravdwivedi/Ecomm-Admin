@@ -28,12 +28,13 @@
                             <tr>
                                 <th>Order ID</th>
                                 <th>User Id</th>
+                                <th></th>
                                 <th>Payment Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let order of orderList">
-                                <td><a href="orders/detail">{{order.id}}</a></td>
+                                <td><a href="orders/detail?id={{order.id}}">{{order.id}}</a></td>
                                 <td>{{order.userId}}</td>
                                 <td>{{order.status}}</td>
                                 <td *ngIf="order.status=='Canceled'"><button class="btn btn-danger">Refund</button></td>

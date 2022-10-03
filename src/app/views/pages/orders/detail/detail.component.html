@@ -11,8 +11,38 @@
             <div class="card-body">
                 <h4 class="card-title">Orders Detail</h4>
                 <!-- <p class="card-description mb-0">Manage users</p> -->
+
+                <div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Address</th>
+                                <th>Delivery Status</th>
+                                <th>Price</th>
+                                <th>User ID</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{detail.id}}</td>
+                                <td>{{address.firstName}} {{'  '}}{{address.lastName}}
+                                    <div style="white-space:pre-wrap">{{address.address1}}</div>
+                                    <div style="white-space:pre-wrap">{{address.postcode}}</div>
+                                    <div style="white-space:pre-wrap">{{address.state}}</div>
+                                </td>
+                                <td>{{detail.deliveryStatus}}</td>
+                                <td>{{detail.priceAfterTax}}</td>
+                                <td>{{detail.userId}}</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
             </div>
 
         </div>
     </div>
 </div>
+
+
