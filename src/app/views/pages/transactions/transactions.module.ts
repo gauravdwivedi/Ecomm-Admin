@@ -1,22 +1,21 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
-
 import { FeahterIconModule } from "src/app/core/feather-icon/feather-icon.module";
 
 import { NgbAccordionModule,NgbDropdownModule,NgbTooltipModule,NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { OrdersComponent} from "./orders.component";
-import { OrderListComponent } from "./list/list.component";
+import { TransactionsComponent } from "./transactions.component";
+import { TransactionsList } from "./list/list.component";
+
 import { Routes,RouterModule } from "@angular/router";
 import { ReactiveFormsModule,FormsModule } from "@angular/forms";
-import { OrderDetailComponent } from "./detail/detail.component";
-import { EditOrderComponent } from "./edit/edit.component";
 
 
-const routes: Routes=[
+
+const routes:Routes =[
     {
         path:'',
-        component:OrdersComponent,
+        component:TransactionsComponent,
         children:[
             {
                 path:'',
@@ -25,23 +24,14 @@ const routes: Routes=[
             },
             {
                 path:'list',
-                component:OrderListComponent
-            },{
-                path:'detail',
-                component:OrderDetailComponent
-            },{
-                path:'edit',
-                component:EditOrderComponent
+                component:TransactionsComponent
             }
         ]
-        
     }
 ]
 
-
-
 @NgModule({
-    declarations:[OrdersComponent,OrderListComponent,OrderDetailComponent,EditOrderComponent],
+    declarations:[TransactionsComponent,TransactionsList],
     imports:[
         CommonModule,
         RouterModule.forChild(routes),
@@ -55,5 +45,4 @@ const routes: Routes=[
     ]
 })
 
-
-export class OrdersModule{}
+export class TransactionModule { }

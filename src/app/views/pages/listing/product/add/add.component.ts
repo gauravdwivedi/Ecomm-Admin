@@ -115,9 +115,8 @@ export class ProductAddComponent implements OnInit {
             //             fileSouce: this.images
             //         });
             //     }
-
-
             // }
+            
         }
 
     }

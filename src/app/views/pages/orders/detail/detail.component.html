@@ -9,9 +9,15 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Orders Detail</h4>
+                <div class="order-edit-delete">
+                    <h4 class="card-title">Orders Detail</h4>
                 <!-- <p class="card-description mb-0">Manage users</p> -->
-
+                <div >
+                    <button class="btn" (click)="onEditClick(detail.id)" > <i data-feather="edit" appFeatherIcon></i></button>
+                    <a class="btn" href="/"> <i data-feather="trash-2" appFeatherIcon></i></a>
+                </div>
+                </div>
+                
                 <div>
                     <table class="table">
                         <thead>
@@ -34,6 +40,17 @@
                                 <td>{{detail.deliveryStatus}}</td>
                                 <td>{{detail.priceAfterTax}}</td>
                                 <td>{{detail.userId}}</td>
+                                <!-- <td>
+                                    <div ngbDropdown>
+                                    <a role="button" ngbDropdownToggle><i class="mr-2" data-feather="more-vertical"
+                                        id="gfg" appFeatherIcon></i></a>
+
+                                        <div ngbDropdownMenu="gfg">
+                                            <button type="button" class="btn btn-danger"  >Change Address</button>
+                                            <div style="white-space:pre-wrap ,margin:0"><button type="button" class="btn btn-success">Change Status</button></div>
+                                        </div>
+                                </div>
+                            </td> -->
                             </tr>
                         </tbody>
 

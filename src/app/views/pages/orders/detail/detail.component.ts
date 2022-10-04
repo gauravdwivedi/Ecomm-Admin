@@ -19,10 +19,13 @@ export class OrderDetailComponent implements OnInit{
     id:any='';
     detail:any={};
     address:any=[];
+    isEditing:boolean=false;
+
 
 
 
     constructor(
+        private interactionService:InteractionService,
         private router:Router,
         private route:ActivatedRoute,
         private modalService:NgbModal,
@@ -48,6 +51,12 @@ export class OrderDetailComponent implements OnInit{
                 console.log('ERROR',err)
             }
         })
+    }
+
+    onEditClick(id:any){
+        console.log('CLiked Edit')
+        this.interactionService.sendData(this.detail);
+        this.router.navigate(['/orders/edit'])
     }
 
 }
