@@ -52,6 +52,17 @@ export const MENU: MenuItem[] = [
         link:'/orders/list'
       }
     ]
+  },
+  {
+    label:'Transactions',
+    icon:'dollar-sign',
+    expanded:true,
+    subItems:[
+      {
+        label:'List',
+        link:'/transactions/list'
+      }
+    ]
   }
   // {
   //   label: 'Web Apps',

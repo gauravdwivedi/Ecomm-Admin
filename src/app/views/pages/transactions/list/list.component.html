@@ -1,0 +1,37 @@
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink=".">Transactions</a></li>
+        <li class="breadcrumb-item active" aria-current="page">List</li>
+    </ol>
+</nav>
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Transactions History</h4>
+                <!-- <p class="card-description mb-0">Manage users</p> -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Transaction ID</th>
+                            <th>Status</th>
+                            <th>Created At</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let transaction of transactionList">
+                            <td><a href="orders/detail?id={{transaction.orderId}}">{{transaction.id}}</a></td>
+                            <td>{{transaction.paymentStatus}}</td>
+                            <td>{{transaction.createdAt}}</td>
+
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

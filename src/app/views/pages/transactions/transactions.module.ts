@@ -24,7 +24,7 @@ const routes:Routes =[
             },
             {
                 path:'list',
-                component:TransactionsComponent
+                component:TransactionsList
             }
         ]
     }

@@ -29,6 +29,9 @@ const routes: Routes = [
       {
         path:'orders',
         loadChildren:()=> import('./views/pages/orders/orders.module').then(m=>m.OrdersModule)
+      },{
+        path:'transactions',
+        loadChildren:()=> import('./views/pages/transactions/transactions.module').then(m=>m.TransactionModule)
       },
       {
         path: 'apps',
