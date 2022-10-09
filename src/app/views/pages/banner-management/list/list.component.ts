@@ -10,12 +10,22 @@ import { MainService } from "src/app/provider/main.service";
 
 export class BannerList implements OnInit{
 
-    transactionList:any;
+    bannersList:any;
 
     constructor(public mainService:MainService){}
     ngOnInit(): void {
+        this.getBannerList();
     }
 
 
+
+    getBannerList(){
+        const apiUrl =`api/v1/banners/list`;
+
+        this.mainService.getApi(apiUrl).subscribe((res:any)=>{
+            console.log(res);
+            this.bannersList=res?.result
+        })
+    }
     
 }

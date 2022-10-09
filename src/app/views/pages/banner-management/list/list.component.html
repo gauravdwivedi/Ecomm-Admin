@@ -11,6 +11,44 @@
             <div class="card-body">
                 <h4 class="card-title">Banners List</h4>
                 <!-- <p class="card-description mb-0">Manage users</p> -->
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Slug</th>
+                            <th>Banner Image</th>
+                            <th>Active</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let banner of bannersList">
+                            <td>{{banner.id}}</td>
+                            <td>{{banner.title}}</td>
+                            <td>{{banner.description}}</td>
+                            <td>{{banner.slug}}</td>
+                            <td><i data-feather="image" appFeatherIcon></i></td>
+                            <td *ngIf="banner.active==0; then activeBanner else notactiveBanner"></td>
+                            <ng-template #activeBanner>True</ng-template>
+                            <ng-template #notactiveBanner>False</ng-template>
+                            <td>
+                                <div ngbDropdown>
+                                    <a  role="button" ngbDropdownToggle><i class="mr-2" data-feather="more-vertical" id="gfg" appFeatherIcon></i></a>
+                                    <div ngbDropdownMenu="gfg">
+                                        <a *ngIf="banner.active==0; then activeBtn else deactiveBtn" ngbDropdownItem>Active</a>
+                                        <ng-template #activeBtn>Active</ng-template>
+                                        <ng-template #deactiveBtn>Deactive</ng-template>
+                                        <button ngbDropdownItem>Delete Banner</button>
+
+                                    </div>
+                                </div>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
         </div>
