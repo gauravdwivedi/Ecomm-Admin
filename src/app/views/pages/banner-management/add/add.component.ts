@@ -28,7 +28,8 @@ export class AddBanner implements OnInit{
     })
 
 
-    constructor(public mainService:MainService){}
+    constructor(public mainService:MainService,
+        private router:Router){}
 
     ngOnInit(): void { }
 
@@ -74,6 +75,9 @@ export class AddBanner implements OnInit{
 
         this.mainService.postApi(apiURL,params).subscribe((res)=>{
             console.log('Response',res.result)
+            if(res?.result){
+                this.router.navigate(['banners'])
+            }
         })
     }
 
