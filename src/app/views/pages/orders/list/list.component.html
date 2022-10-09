@@ -30,6 +30,7 @@
                                 <th>User Id</th>
                                 <th></th>
                                 <th>Payment Status</th>
+                                <th>Delivery Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -38,12 +39,14 @@
                                 <td>{{order.userId}}</td>
                                 <td>{{order.status}}</td>
                                 <td *ngIf="order.status=='Canceled'"><button class="btn btn-danger">Refund</button></td>
+                                <td>{{order.deliveryStatus}}</td>
                                 <td><div ngbDropdown>
                                     <a role="button" ngbDropdownToggle><i class="mr-2" data-feather="more-vertical"
                                         id="gfg" appFeatherIcon></i></a>
 
                                         <div ngbDropdownMenu="gfg">
                                             <button type="button" class="btn btn-danger"  (click)="changeOrderStatus(order.id,'Canceled')">Cancel</button>
+                                            <button type="button" class="btn btn-danger"  (click)="changeOrderStatus(order.id,'Delivered')">Delivered</button>
                                         </div>
                                 </div>
                             </td>

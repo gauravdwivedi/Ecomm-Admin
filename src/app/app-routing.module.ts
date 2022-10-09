@@ -32,6 +32,9 @@ const routes: Routes = [
       },{
         path:'transactions',
         loadChildren:()=> import('./views/pages/transactions/transactions.module').then(m=>m.TransactionModule)
+      },{
+        path:'banners',
+        loadChildren:()=>import('./views/pages/banner-management/banner.module').then(m=>m.BannerModule)
       },
       {
         path: 'apps',

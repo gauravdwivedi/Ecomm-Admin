@@ -248,7 +248,7 @@
     <div class="card">
       <div class="card-body">
         <div class="d-flex justify-content-between align-items-baseline mb-2">
-          <h6 class="card-title mb-0">Cloud storage</h6>
+          <h6 class="card-title mb-0">Delivery</h6>
           <div ngbDropdown class="mb-2">
             <button ngbDropdownToggle class="btn p-0 no-dropdown-toggle-icon" type="button" id="dropdownMenuButton5">
               <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal" appFeatherIcon></i>
@@ -274,20 +274,20 @@
         <div class="row mb-3">
           <div class="col-6 d-flex justify-content-end">
             <div>
-              <label class="d-flex align-items-center justify-content-end tx-10 text-uppercase fw-bold">Total storage <span class="p-1 ms-1 rounded-circle bg-secondary"></span></label>
-              <h5 class="fw-bolder mb-0 text-end">8TB</h5>
+              <label class="d-flex align-items-center justify-content-end tx-10 text-uppercase fw-bold">Total orders <span class="p-1 ms-1 rounded-circle bg-secondary"></span></label>
+              <h5 class="fw-bolder mb-0 text-end">{{totalOrder}}</h5>
             </div>
           </div>
           <div class="col-6">
             <div>
-              <label class="d-flex align-items-center tx-10 text-uppercase fw-bold"><span class="p-1 me-1 rounded-circle bg-primary"></span> Used storage</label>
-              <h5 class="fw-bolder mb-0">~5TB</h5>
+              <label class="d-flex align-items-center tx-10 text-uppercase fw-bold"><span class="p-1 me-1 rounded-circle bg-primary"></span> Orders Delivered</label>
+              <h5 class="fw-bolder mb-0">{{completedOrders}}</h5>
             </div>
           </div>
         </div>
-        <div class="d-grid">
+        <!-- <div class="d-grid">
           <button class="btn btn-primary">Upgrade storage</button>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -381,7 +381,7 @@
     <div class="card">
       <div class="card-body">
         <div class="d-flex justify-content-between align-items-baseline mb-2">
-          <h6 class="card-title mb-0">Projects</h6>
+          <h6 class="card-title mb-0">Pending Orders</h6>
           <div ngbDropdown class="mb-2">
             <button ngbDropdownToggle class="btn p-0 no-dropdown-toggle-icon" type="button" id="dropdownMenuButton7">
               <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal" appFeatherIcon></i>
@@ -399,24 +399,21 @@
           <table class="table table-hover mb-0">
             <thead>
               <tr>
-                <th class="pt-0">#</th>
-                <th class="pt-0">Project Name</th>
-                <th class="pt-0">Start Date</th>
-                <th class="pt-0">Due Date</th>
-                <th class="pt-0">Status</th>
-                <th class="pt-0">Assign</th>
+                <th class="pt-0">Order ID</th>
+                <th class="pt-0">createdAt</th>
+                <th class="pt-0">Payment Status</th>
+                <th class="pt=0">Delivery Status</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>NobleUI jQuery</td>
-                <td>01/01/2022</td>
-                <td>26/04/2022</td>
-                <td><span class="badge bg-danger">Released</span></td>
-                <td>Leonardo Payne</td>
+              <tr *ngFor="let order of pendingOrder">
+                <td>{{order.id}}</td>
+                <td>{{order.createdAt}}</td>
+                <td>{{order.status}}</td>
+                <td><span class="badge bg-danger" *ngIf="order.deliveryStatus=='processing'">Pending</span></td>
+                <!-- <td>Leonardo Payne</td> -->
               </tr>
-              <tr>
+              <!-- <tr>
                 <td>2</td>
                 <td>NobleUI Angular</td>
                 <td>01/01/2022</td>
@@ -464,7 +461,7 @@
                 <td class="border-bottom">10/11/2022</td>
                 <td class="border-bottom"><span class="badge bg-info">Pending</span></td>
                 <td class="border-bottom">Jensen Combs</td>
-              </tr>
+              </tr> -->
             </tbody>
           </table>
         </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { MainService } from 'src/app/provider/main.service';
 import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -19,6 +19,10 @@ export class DashboardComponent implements OnInit {
   public revenueChartOptions: any = {};
   public monthlySalesChartOptions: any = {};
   public cloudStorageChartOptions: any = {};
+  public totalOrder:any={};
+  public completedOrders:any={};
+  public pendingOrder:any={};
+
 
   // colors and font variables for apex chart 
   obj = {
@@ -42,23 +46,47 @@ export class DashboardComponent implements OnInit {
    */
   currentDate: NgbDateStruct;
 
-  constructor(private calendar: NgbCalendar) {}
+  constructor(private calendar: NgbCalendar,public mainService:MainService) {}
 
   ngOnInit(): void {
     this.currentDate = this.calendar.getToday();
 
+  this.getPendingOrders();
+
+  this.mainService.getApi('api/v1/orders/completed-orders/list').subscribe((res:any)=>{
+  let completedOrders=res.result[0]['COUNT(deliveryStatus)'];
+  this.completedOrders = completedOrders;
+
+  if(completedOrders>0){
+    this.mainService.getApi('api/v1/orders/pending-orders/list').subscribe(res=>{
+      console.log(res.result[0]['COUNT(id)'])
+    let  totalOrders=res.result[0]['COUNT(id)'];
+    this.totalOrder=totalOrders;
+      this.cloudStorageChartOptions = getCloudStorageChartOptions(this.obj,completedOrders,totalOrders);
+
+    })
+  }
+  })
+  
     this.customersChartOptions = getCustomerseChartOptions(this.obj);
     this.ordersChartOptions = getOrdersChartOptions(this.obj);
     this.growthChartOptions = getGrowthChartOptions(this.obj);
     this.revenueChartOptions = getRevenueChartOptions(this.obj);
     this.monthlySalesChartOptions = getMonthlySalesChartOptions(this.obj);
-    this.cloudStorageChartOptions = getCloudStorageChartOptions(this.obj);
 
     // Some RTL fixes. (feel free to remove if you are using LTR))
     if (document.querySelector('html')?.getAttribute('dir') === 'rtl') {
       this.addRtlOptions();
     }
 
+  }
+
+
+  getPendingOrders(){
+    this.mainService.getApi('api/v1/orders/pending-orders/all').subscribe(res=>{
+      console.log(res.result)
+      this.pendingOrder= res.result;
+    })
   }
 
 
@@ -509,9 +537,16 @@ function getMonthlySalesChartOptions(obj: any) {
 /**
  * Cloud storage chart options
  */
- function getCloudStorageChartOptions(obj: any) {
+ function getCloudStorageChartOptions(obj: any,completedOrders:number=0,totalOrders:number=0) {
+console.log(completedOrders,'',totalOrders)
+let completedPercentage= Math.floor((completedOrders/totalOrders)*100);
+
+console.log(completedPercentage)
+
+  
+
   return {
-    series: [67],
+    series: [completedPercentage],
     chart: {
       height: 260,
       type: "radialBar"

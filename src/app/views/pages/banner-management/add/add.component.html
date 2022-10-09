@@ -1,0 +1,71 @@
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/banners">Banner</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Add New Banner</li>
+    </ol>
+</nav>
+
+
+
+<div class="row">
+    <div class="col-md-12 stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">Add New Banner</h6>
+
+
+                <form [formGroup]="bannerForm" (submit)="submitForm()">
+                    <div class="row m-6">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="m-1">Title</label>
+                                <input
+                                    formControlName="title" type="text" class="form-control" >
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="m-1">Slug</label>
+                                <input
+                                    formControlName="slug" type="text"
+                                    class="form-control" 
+                                >
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="m-1">Description</label>
+                                <input
+                                    formControlName="description"
+                                    class="form-control"
+                                    type="text"
+                                >
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group  m-1">
+                                <label for="file" c>Add Images</label>
+                                <input formControlName="file" id="file" type="file" class="form-control"  (change)="uploadFile($event)">
+                                <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+                                    <div *ngIf="f.file.errors && f.file.errors.required">File is required!</div>
+                                </div>
+                                <div *ngIf="let url of images">
+                                    <img src="{{apiUrl}}{{url}}" height="150" width="200px" style="margin: 3px;">
+    
+                                </div>
+                                <div class="d-flex justify-content-center m-4 p-4">
+                                    <button type="submit" class="btn btn-primary submit" >Save</button>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

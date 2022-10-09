@@ -63,6 +63,17 @@ export const MENU: MenuItem[] = [
         link:'/transactions/list'
       }
     ]
+  },
+  {
+    label:'Banners',
+    icon:'tool',
+    expanded:true,
+    subItems:[
+      {
+        label:'List',
+        link:'/banners/list'
+      }
+    ]
   }
   // {
   //   label: 'Web Apps',
