@@ -1,5 +1,6 @@
 import { Component,OnInit } from "@angular/core";
 import { MainService } from "src/app/provider/main.service";
+import swal from "sweetalert2";
 
 
 @Component({
@@ -14,17 +15,31 @@ export class BannerList implements OnInit{
 
     constructor(public mainService:MainService){}
     ngOnInit(): void {
+
+
+
+
+        this.mainService.refreshNeeded.subscribe(()=>{
+            this.getBannerList()
+        })
         this.getBannerList();
     }
 
 
+    deleteBanner(id:any){
+        
+        const apiUrl = `api/v1/banners/delete`;
+        this.mainService.deleteProduct(apiUrl,id).subscribe((res)=>{
+            console.log('Delete Response',res)
+        })
+    }
 
     getBannerList(){
         const apiUrl =`api/v1/banners/list`;
 
         this.mainService.getApi(apiUrl).subscribe((res:any)=>{
             console.log(res);
-            this.bannersList=res?.result
+            this.bannersList=res?.result;
         })
     }
     

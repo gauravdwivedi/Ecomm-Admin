@@ -40,7 +40,7 @@
                                         <a *ngIf="banner.active==0; then activeBtn else deactiveBtn" ngbDropdownItem>Active</a>
                                         <ng-template #activeBtn>Active</ng-template>
                                         <ng-template #deactiveBtn>Deactive</ng-template>
-                                        <button ngbDropdownItem>Delete Banner</button>
+                                        <button ngbDropdownItem (click)="deleteBanner(banner.id)">Delete Banner</button>
 
                                     </div>
                                 </div>
