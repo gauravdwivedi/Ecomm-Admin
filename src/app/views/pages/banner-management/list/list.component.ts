@@ -31,6 +31,13 @@ export class BannerList implements OnInit{
         })
     }
 
+    toggleActive(id:any,activeStatus:any){
+        
+        const apiURL=`api/v1/banners/active`;
+        this.mainService.postApi(apiURL,{id,activeStatus:!activeStatus}).subscribe((res)=>{
+            console.log('Active',res);
+        })
+    }
 
     getBannerList(){
         const apiUrl =`api/v1/banners/list`;

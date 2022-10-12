@@ -35,9 +35,10 @@
                             <!-- <td *ngIf="banner.active==0; then activeBanner else notactiveBanner"></td>
                             <ng-template #activeBanner>True</ng-template>
                             <ng-template #notactiveBanner>False</ng-template> -->
-                            <td>
+                            <td >
                                 <!-- <input  [ngClass]="{'switch':banner.active==0}" type="checkbox" checked="{{banner.active}}" > -->
-                                <input  class="switch" type="checkbox" [checked]="false"  >
+                                <input  class="switch" type="checkbox" [checked]="banner.active"  (change)="toggleActive(banner.id,banner.active)" >
+
                             </td>
                             <td>
                                 <div ngbDropdown>
@@ -45,7 +46,7 @@
                                     <div ngbDropdownMenu="gfg">
                                         <!-- <a *ngIf="banner.active==0; then activeBtn else deactiveBtn" ngbDropdownItem>Active</a> -->
                                         <!-- <ng-template #activeBtn>Active</ng-template> -->
-                                        <ng-template #deactiveBtn>Deactive</ng-template>
+                                        <!-- <ng-template #deactiveBtn>Deactive</ng-template> -->
                                         <button type="button" class="btn btn-danger" ngbDropdownItem (click)="deleteBanner(banner.id)">Delete Banner</button>
                                     </div>
                                 </div>
