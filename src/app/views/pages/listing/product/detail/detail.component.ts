@@ -40,10 +40,8 @@ export class ProductDetail implements OnInit {
 
     constructor(private modalService: NgbModal, private _interactionService: InteractionService,
         private route: ActivatedRoute,
-        public mainService: MainService) {
-
-
-    }
+        public mainService: MainService) { }
+        
     attributeForm = new FormGroup({
         price: new FormControl('', Validators.required),
         size: new FormControl('', Validators.required),

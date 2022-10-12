@@ -22,6 +22,8 @@ export class DashboardComponent implements OnInit {
   public totalOrder:any={};
   public completedOrders:any={};
   public pendingOrder:any={};
+  public page:any=1;
+  public pageSize:any=10;
 
 
   // colors and font variables for apex chart 
@@ -587,6 +589,6 @@ console.log(completedPercentage)
     stroke: {
       lineCap: "round",
     },
-    labels: ["Storage Used"]
+    labels: ["Completed Deliveries"]
   }
 };

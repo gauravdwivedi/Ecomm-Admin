@@ -16,6 +16,9 @@
                         <tr>
                             <th>Transaction ID</th>
                             <th>Status</th>
+                            <th>Amount</th>
+                            <th>Contact</th>
+                            <th>Email</th>
                             <th>Created At</th>
                         </tr>
                     </thead>
@@ -23,8 +26,11 @@
                     <tbody>
                         <tr *ngFor="let transaction of transactionList">
                             <td><a href="orders/detail?id={{transaction.orderId}}">{{transaction.id}}</a></td>
-                            <td>{{transaction.paymentStatus}}</td>
-                            <td>{{transaction.createdAt}}</td>
+                            <td>{{transaction.status}}</td>
+                            <td>{{transaction.amount}}</td>
+                            <td>{{transaction.contact}}</td>
+                            <td>{{transaction.email}}</td>
+                            <td>{{transaction.created_at|date: 'dd/MM/yyyy'}}</td>
 
                         </tr>
                     </tbody>

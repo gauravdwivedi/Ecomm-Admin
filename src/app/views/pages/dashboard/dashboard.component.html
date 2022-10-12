@@ -406,9 +406,9 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let order of pendingOrder">
+              <tr *ngFor="let order of $any(pendingOrder | slice :(page-1)*pageSize:page*pageSize)">
                 <td>{{order.id}}</td>
-                <td>{{order.createdAt}}</td>
+                <td>{{order.createdAt|date:'dd/MM/yyyy'}}</td>
                 <td>{{order.status}}</td>
                 <td><span class="badge bg-danger" *ngIf="order.deliveryStatus=='processing'">Pending</span></td>
                 <!-- <td>Leonardo Payne</td> -->
@@ -464,7 +464,12 @@
               </tr> -->
             </tbody>
           </table>
+
+  <ngb-pagination class="d-flex justify-content-center" [(page)]="page" [pageSize]="pageSize"
+  [collectionSize]="pendingOrder.length">
+</ngb-pagination>
         </div>
+
       </div> 
     </div>
   </div>

@@ -24,7 +24,7 @@ export class TransactionsList implements OnInit{
         this.mainService.getApi(apiURL).subscribe((res:any)=>{
             console.log(res)
             if(res&&res.result){
-                this.transactionList=res.result;
+                this.transactionList=res.result.items;
             }
         })
     }

@@ -29,19 +29,24 @@
                             <td>{{banner.title}}</td>
                             <td>{{banner.description}}</td>
                             <td>{{banner.slug}}</td>
-                            <td><i data-feather="image" appFeatherIcon></i></td>
-                            <td *ngIf="banner.active==0; then activeBanner else notactiveBanner"></td>
+                            <td>
+                                <a class="btn" href="banners/image?url={{banner.url}}">
+                                <i data-feather="image" appFeatherIcon></i></a></td>
+                            <!-- <td *ngIf="banner.active==0; then activeBanner else notactiveBanner"></td>
                             <ng-template #activeBanner>True</ng-template>
-                            <ng-template #notactiveBanner>False</ng-template>
+                            <ng-template #notactiveBanner>False</ng-template> -->
+                            <td>
+                                <!-- <input  [ngClass]="{'switch':banner.active==0}" type="checkbox" checked="{{banner.active}}" > -->
+                                <input  class="switch" type="checkbox" [checked]="false"  >
+                            </td>
                             <td>
                                 <div ngbDropdown>
                                     <a  role="button" ngbDropdownToggle><i class="mr-2" data-feather="more-vertical" id="gfg" appFeatherIcon></i></a>
                                     <div ngbDropdownMenu="gfg">
-                                        <a *ngIf="banner.active==0; then activeBtn else deactiveBtn" ngbDropdownItem>Active</a>
-                                        <ng-template #activeBtn>Active</ng-template>
+                                        <!-- <a *ngIf="banner.active==0; then activeBtn else deactiveBtn" ngbDropdownItem>Active</a> -->
+                                        <!-- <ng-template #activeBtn>Active</ng-template> -->
                                         <ng-template #deactiveBtn>Deactive</ng-template>
-                                        <button ngbDropdownItem (click)="deleteBanner(banner.id)">Delete Banner</button>
-
+                                        <button type="button" class="btn btn-danger" ngbDropdownItem (click)="deleteBanner(banner.id)">Delete Banner</button>
                                     </div>
                                 </div>
                             </td>
@@ -50,7 +55,6 @@
                     </tbody>
                 </table>
             </div>
-
         </div>
     </div>
 </div>

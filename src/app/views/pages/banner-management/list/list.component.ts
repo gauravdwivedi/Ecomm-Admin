@@ -16,9 +16,6 @@ export class BannerList implements OnInit{
     constructor(public mainService:MainService){}
     ngOnInit(): void {
 
-
-
-
         this.mainService.refreshNeeded.subscribe(()=>{
             this.getBannerList()
         })
@@ -34,12 +31,13 @@ export class BannerList implements OnInit{
         })
     }
 
+
     getBannerList(){
         const apiUrl =`api/v1/banners/list`;
 
         this.mainService.getApi(apiUrl).subscribe((res:any)=>{
             console.log(res);
-            this.bannersList=res?.result;
+          this.bannersList=res?.result;
         })
     }
     

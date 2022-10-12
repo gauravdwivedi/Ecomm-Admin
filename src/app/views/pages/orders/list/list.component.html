@@ -28,7 +28,6 @@
                             <tr>
                                 <th>Order ID</th>
                                 <th>User Id</th>
-                                <th></th>
                                 <th>Payment Status</th>
                                 <th>Delivery Status</th>
                             </tr>
@@ -37,19 +36,20 @@
                             <tr *ngFor="let order of orderList">
                                 <td><a href="orders/detail?id={{order.id}}">{{order.id}}</a></td>
                                 <td>{{order.userId}}</td>
-                                <td>{{order.status}}</td>
-                                <td *ngIf="order.status=='Canceled'"><button class="btn btn-danger">Refund</button></td>
+                                <td *ngIf="order.deliveryStatus==='Canceled' && order.status=='success'"><button class="btn btn-danger">Refund</button></td>
+                                <td *ngIf="order.deliveryStatus!=='Canceled'">{{order.status}}</td>
                                 <td>{{order.deliveryStatus}}</td>
                                 <td><div ngbDropdown>
                                     <a role="button" ngbDropdownToggle><i class="mr-2" data-feather="more-vertical"
                                         id="gfg" appFeatherIcon></i></a>
 
-                                        <div ngbDropdownMenu="gfg">
-                                            <button type="button" class="btn btn-danger"  (click)="changeOrderStatus(order.id,'Canceled')">Cancel</button>
-                                            <button type="button" class="btn btn-danger"  (click)="changeOrderStatus(order.id,'Delivered')">Delivered</button>
+                                        <div ngbDropdownMenu="gfg" >
+                                            <button type="button" class="btn btn-danger m-1"  (click)="changeOrderStatus(order.id,'Canceled')">Cancel</button>
+                                            <button type="button" class="btn btn-success"  (click)="changeOrderStatus(order.id,'Delivered')">Delivered</button>
                                         </div>
                                 </div>
                             </td>
+
                             </tr>
                         </tbody>
                     </table>
