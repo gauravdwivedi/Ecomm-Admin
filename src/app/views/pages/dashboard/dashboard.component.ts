@@ -92,6 +92,15 @@ export class DashboardComponent implements OnInit {
   }
 
 
+  //getweeklyTransactions
+  getweeklyTransactions(){
+    
+  }
+
+
+  
+
+
   /**
    * Only for RTL (feel free to remove if you are using LTR)
    */
@@ -111,6 +120,17 @@ export class DashboardComponent implements OnInit {
  * Customerse chart options
  */
 function getCustomerseChartOptions(obj: any) {
+
+  //TODO:Getting transactions Data for a week 
+
+  //TODO:Getting Dates for each roe for a week
+
+  //TODO:Calculate Total Sum 
+
+  //TODO:Calculate increase in percentage from last week sum
+
+
+
   return {
     series: [{
       name: '',

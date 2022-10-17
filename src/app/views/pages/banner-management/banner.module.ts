@@ -11,6 +11,8 @@ import { BannerList } from "./list/list.component";
 import { Routes,RouterModule } from "@angular/router";
 import { ReactiveFormsModule,FormsModule } from "@angular/forms";
 import { AddBanner } from "./add/add.component";
+import { ImageBanner } from "./image/image.component";
+
 
 
 
@@ -31,6 +33,10 @@ const routes: Routes=[
             {
                 path:'add',
                 component:AddBanner
+            },
+            {
+                path:'image',
+                component:ImageBanner
             }
         ]
         
@@ -38,7 +44,7 @@ const routes: Routes=[
 ]
 
 @NgModule({
-    declarations:[BannerComponent,BannerList,AddBanner],
+    declarations:[BannerComponent,BannerList,AddBanner,ImageBanner],
     imports:[
         CommonModule,
         RouterModule.forChild(routes),
