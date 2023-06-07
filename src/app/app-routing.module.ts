@@ -3,31 +3,56 @@ import { Routes, RouterModule } from '@angular/router';
 import { BaseComponent } from './views/layout/base/base.component';
 import { AuthGuard } from './core/guard/auth.guard';
 import { ErrorPageComponent } from './views/pages/error-page/error-page.component';
+import { HasRoleGuard } from './has-role.guard';
 
 
 const routes: Routes = [
   { path: 'auth', loadChildren: () => import('./views/pages/auth/auth.module').then(m => m.AuthModule) },
+  // {
+  //   path:'',
+  //   component:BaseComponent,
+  //   canActivate:[AuthGuard],
+  //   children:[
+  //     {
+  //       path:'dashboard',
+  //       loadChildren:()=> import('./views/pages/dashboard/dashboard.module').then(m=> m.DashboardModule)
+  //     },
+  //     {
+  //       path:'product',
+        
+  //       loadChildren:()=> import('./views/pages/seller/products/product.module').then(m => m.ProductModule)
+  //     }
+  //   ]
+
+  // },
   {
     path: '',
     component: BaseComponent,
     canActivate: [AuthGuard],
+    data:{
+      role:1
+    },
     children: [
       {
         path: 'dashboard',
         loadChildren: () => import('./views/pages/dashboard/dashboard.module').then(m => m.DashboardModule)
       }, {
         path: 'users',
+        canActivate:[HasRoleGuard],
         loadChildren: () => import('./views/pages/users/users.module').then(m => m.UsersModule)
       },
       {
         path: 'categories',
+        canActivate:[HasRoleGuard],
         loadChildren: () => import('./views/pages/listing/categories/categories.module').then(m => m.CategoriesModule)
       }, {
         path: 'product',
+        canActivate:[HasRoleGuard],
         loadChildren: () => import('./views/pages/listing/product/product.module').then(m => m.ProductModule)
       },
       {
         path:'orders',
+        canActivate:[HasRoleGuard],
         loadChildren:()=> import('./views/pages/orders/orders.module').then(m=>m.OrdersModule)
       },{
         path:'transactions',

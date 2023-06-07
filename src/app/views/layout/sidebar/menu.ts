@@ -1,5 +1,8 @@
 import { MenuItem } from './menu.model';
 
+const isAdmin = Boolean( localStorage.getItem('isAdmin'));
+console.log('IsAdmin',isAdmin)
+
 export const MENU: MenuItem[] = [
   {
     label: 'Main',
@@ -10,11 +13,11 @@ export const MENU: MenuItem[] = [
     icon: 'home',
     link: '/dashboard'
   },
-
   {
     label: 'Admin',
     isTitle: true
   },
+
   {
     label: 'Users',
     icon: 'message-square',

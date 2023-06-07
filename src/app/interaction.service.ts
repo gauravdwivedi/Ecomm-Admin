@@ -14,6 +14,7 @@ export class InteractionService {
   constructor() { }
 
   sendData(data: any) {
+    console.log(data)
     this._data.next(data);
   }
 

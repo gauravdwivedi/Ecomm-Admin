@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Renderer2, Inj
 import { DOCUMENT } from '@angular/common';
 
 import MetisMenu from 'metismenujs';
-
+import { SELLER_MENU } from './menu_seller';
 import { MENU } from './menu';
 import { MenuItem } from './menu.model';
 import { Router, NavigationEnd } from '@angular/router';
@@ -13,6 +13,8 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit, AfterViewInit {
+
+  userType:boolean
 
   @ViewChild('sidebarToggler') sidebarToggler: ElementRef;
 
@@ -40,7 +42,13 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.menuItems = MENU;
+
+    if(localStorage.getItem('isAdmin')){
+      this.userType=true;
+      this.menuItems = MENU;
+    }else{
+      this.menuItems=SELLER_MENU;
+    }
 
     /**
      * Sidebar-folded on desktop (min-width:992px and max-width: 1199px)
@@ -192,9 +200,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     for (let i = 0; i < links.length; i++) {
       // tslint:disable-next-line: no-string-literal
         if (window.location.pathname === links[i]['pathname']) {
-          
             menuItemEl = links[i];
-            
             break;
         }
     }

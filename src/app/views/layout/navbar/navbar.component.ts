@@ -53,7 +53,7 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('hoppedin-admin-token');
     localStorage.removeItem('hoppedin-user');
     localStorage.removeItem('isLoggedin');
-
+    localStorage.removeItem('isAdmin');
     if (!localStorage.getItem('hoppedin-admin-token')) {
       this.router.navigate(['/auth/login']);
     }

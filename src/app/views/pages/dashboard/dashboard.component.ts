@@ -52,9 +52,9 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentDate = this.calendar.getToday();
-
   this.getPendingOrders();
 
+  //Completed Delivery out of total orders
   this.mainService.getApi('api/v1/orders/completed-orders/list').subscribe((res:any)=>{
   let completedOrders=res.result[0]['COUNT(deliveryStatus)'];
   this.completedOrders = completedOrders;
@@ -66,9 +66,9 @@ export class DashboardComponent implements OnInit {
     this.totalOrder=totalOrders;
       this.cloudStorageChartOptions = getCloudStorageChartOptions(this.obj,completedOrders,totalOrders);
 
-    })
-  }
-  })
+         })
+        }
+      })
   
     this.customersChartOptions = getCustomerseChartOptions(this.obj);
     this.ordersChartOptions = getOrdersChartOptions(this.obj);
@@ -80,9 +80,7 @@ export class DashboardComponent implements OnInit {
     if (document.querySelector('html')?.getAttribute('dir') === 'rtl') {
       this.addRtlOptions();
     }
-
   }
-
 
   getPendingOrders(){
     this.mainService.getApi('api/v1/orders/pending-orders/all').subscribe(res=>{
@@ -121,13 +119,9 @@ export class DashboardComponent implements OnInit {
  */
 function getCustomerseChartOptions(obj: any) {
 
-  //TODO:Getting transactions Data for a week 
 
-  //TODO:Getting Dates for each roe for a week
+  //TODO::Getting number of new users in a week
 
-  //TODO:Calculate Total Sum 
-
-  //TODO:Calculate increase in percentage from last week sum
 
 
 

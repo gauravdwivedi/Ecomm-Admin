@@ -11,7 +11,7 @@
             <div class="card-body">
                 <h6 class="card-title">Add New User</h6>
                 <form [formGroup]="userForm" (submit)="submitForm()">
-                    <div class="row">
+                    <div class="row m-2 p-2">
 
                         <!-- Col -->
                         <!-- <div class="col-sm-6" *ngIf="f.roleId.value==2 || f.roleId.value==3">
@@ -37,74 +37,94 @@
                         </div> -->
                         <!-- Col -->
 
-                        <div class="col-sm-6">
+                        <div class="col-sm-6 p-2">
                             <div class="form-group">
-                                <label class="control-label">First Name</label>
+                                <!-- <label class="control-label">First Name</label> -->
                                 <input formControlName="firstName" type="text" class="form-control "
                                     value={{detail.first_name}} placeholder="Enter first name">
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-6 p-2">
                             <div class="form-group">
-                                <label class="control-label">Last Name</label>
+                                <!-- <label class="control-label">Last Name</label> -->
                                 <input formControlName="lastName" type="text" class="form-control "
                                     value={{detail.last_name}} placeholder="Enter last name">
                             </div>
                         </div>
 
-                        <div class="col-sm-6">
+                        <div class="col-sm-6 p-2">
                             <div class="form-group">
-                                <label class="control-label">Email address</label>
+                                <!-- <label class="control-label">Email address</label> -->
                                 <input formControlName="email" type="email" class="form-control " value={{detail.email}}
                                     placeholder="Enter email">
                             </div>
                         </div>
 
-                        <div class="col-sm-6">
+                        <div class="col-sm-6 p-2">
                             <div class="form-group">
-                                <label class="control-label">Password</label>
+                                <!-- <label class="control-label">Password</label> -->
                                 <input formControlName="password" type="password" class="form-control " value=''
                                     placeholder="Enter password">
                             </div>
                         </div>
 
-                        <div class="col-sm-6">
+                        <div class="col-sm-6 p-2">
                             <div class="form-group">
-                                <label class="control-label">Gender</label>
-                                <div>
-                                    <div>
-                                        <input type="radio" formControlName="gender" value="Male"> Male
-                                    </div>
-
-                                    <div>
-                                        <input type="radio" formControlName="gender" value="Female"> Female
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="control-label">Phone</label>
+                                <!-- <label class="control-label">Phone</label> -->
                                 <input formControlName="Phone" type="number" class="form-control "
                                     value={{detail.phone}} placeholder="Enter phone number">
                             </div>
                         </div>
 
-                        <div class="col-sm-6">
+                        <div class="col-sm-6 p-2">
                             <div class="form-group">
-                                <label class="control-label">DOB</label>
+                                <!-- <label class="control-label">DOB</label> -->
                                 <div class="cal-btn">
-                                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" formControlName="dob"
+                                    <input class="form-control" placeholder="Enter date of birth" name="dp" formControlName="dob"
                                         ngbDatepicker #d="ngbDatepicker">
-                                    <button class="control-label btn calendar btn-primary m-2 p-2" (click)="d.toggle()"
+                                    <button class="control-label btn calendar btn-primary " (click)="d.toggle()"
                                         type="button"><i class="mr-2" data-feather="calendar" id="gfg"
                                             appFeatherIcon></i></button>
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="col-sm-6 ">
+                            <div class="form-group m-3">
+                                <label class="control-label">Gender</label>
+                                <div>
+                                    <div class="m-2">
+                                        <input type="radio" formControlName="gender" value="Male"> Male
+                                    </div>
+
+                                    <div class="m-2">
+                                        <input type="radio" formControlName="gender" value="Female"> Female
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+
+                        <div class="col-sm-6">
+                            <div class="form-group m-3">
+                                <label class="control-label">Select Role</label>
+                                <div class="m-2">
+                                    <input type="radio" formControlName="role" value="1" class="m-2">Admin
+
+                                </div>
+                                <div class="m-2">
+                                    <input type="radio" formControlName="role" value="2" class="m-2">User
+
+                                </div>
+                                <div class="m-2">
+                                    <input type="radio" formControlName="role" value="3" class="m-2">Seller
+                                </div>
+                                    
+
+                            </div>
+                        </div>
 
                     </div>
+
                     <div class="d-flex justify-content-center mt-2">
                         <button type="submit" class="btn btn-primary submit text-center">Add User</button>
                     </div>

@@ -15,6 +15,7 @@ export class UserAdd implements OnInit {
     id: any = '';
     detail: any = {};
     rolesList = [];
+    role:number;
 
     userForm = new FormGroup({
         // roleId: new FormControl('', [Validators.required]),
@@ -24,7 +25,8 @@ export class UserAdd implements OnInit {
         password: new FormControl('', [Validators.required]),
         Phone: new FormControl('', [Validators.required]),
         gender: new FormControl('', [Validators.required]),
-        dob: new FormControl('', [Validators.required])
+        dob: new FormControl('', [Validators.required]),
+        role:new FormControl('',[Validators.required])
     })
 
 
@@ -43,10 +45,16 @@ export class UserAdd implements OnInit {
         return this.userForm.controls;
     }
 
+
+    selectRole(role:number){
+
+        this.role=role;
+    }
+
     submitForm() {
         this.isSubmitting = true;
         const formValues = this.userForm.value;
-
+        
         const apiURL = `api/v1/users/add-user`;
         let params: any = {
             firstName: formValues.firstName,
@@ -55,13 +63,20 @@ export class UserAdd implements OnInit {
             password: formValues.password,
             phone: formValues.Phone,
             gender: formValues.gender,
+            role:formValues.role,
             dob: formValues.dob,
             status: 1
         }
 
-        this.mainService.postApi(apiURL, params).subscribe((res: any) => {
-            this.router.navigate(['users']);
-        })
+        console.log('Form Values',params)
+
+            this.mainService.postApi(apiURL, params).subscribe((res: any) => {
+                this.router.navigate(['users']);
+            })
+        
+           
+        
+       
 
     }
 

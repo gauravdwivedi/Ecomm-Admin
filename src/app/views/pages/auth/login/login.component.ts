@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UserModel } from 'src/app/model/user.model';
 import { MainService } from 'src/app/provider/main.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -8,12 +10,14 @@ import { MainService } from 'src/app/provider/main.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
+ 
   returnUrl: any;
   email: string;
   password: string;
   isSubmitting: boolean = false;
   error: string
+  user: UserModel;
+  userType:BehaviorSubject<any> =new BehaviorSubject<any>(this.getUserType());
 
   constructor(private router: Router, private route: ActivatedRoute, public mainService: MainService) { }
 
@@ -23,11 +27,15 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
+  getUserType(): any {
+    return localStorage.getItem('isAdmin');
+  }
 
   onLoggedin(e: Event) {
     e.preventDefault();
 
     this.isSubmitting = true;
+    
 
     if (this.isValid()) {
       const params = {
@@ -45,11 +53,18 @@ export class LoginComponent implements OnInit {
 
           this.mainService.hideSpinner()
 
-          if (v.registration == false && v.user.role == 1) {
+          this.user = this.getUser(v.token)
+
+          if (v.registration == false && v.user.role == 1 || v.registration==false && v.user.role ==3) {
 
             localStorage.setItem('isLoggedin', 'true')
             localStorage.setItem('hoppedin-admin-token', v.token)
             localStorage.setItem('hoppedin-user', JSON.stringify(v.user))
+            
+            if(v.user.role==1){
+              localStorage.setItem('isAdmin','true');
+              this.userType.next(true)
+            }
 
             let isLoggedin = localStorage.getItem('isLoggedin');
             if (isLoggedin) {
@@ -81,4 +96,13 @@ export class LoginComponent implements OnInit {
   isValid() {
     return this.email && this.password
   }
+
+
+  private getUser(token:string):UserModel{
+    return JSON.parse(atob(token.split('.')[1])) as UserModel
+  }
+
+  
+
+
 }

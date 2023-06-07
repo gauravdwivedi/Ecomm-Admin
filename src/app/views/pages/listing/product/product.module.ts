@@ -10,6 +10,7 @@ import { ProductComponent } from './product.component';
 
 import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+//components
 import { ProductListComponent } from './list/list.component';
 import { ProductAddComponent } from './add/add.component';
 import { AddAttribute } from './add-attribute/add-attribute.component'
@@ -17,16 +18,18 @@ import { AddAttribute } from './add-attribute/add-attribute.component'
 import { productVideoList } from './product-list/product-list.component';
 import { ProductVideoList } from './video/video.component'
 import { ProductDetail } from "./detail/detail.component"
+import { EditProduct } from './edit/edit.component';
+
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { CarouselComponent, CarouselModule } from 'ngx-owl-carousel-o';
-import { EditProduct } from './edit/edit.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
 };
+
 const routes: Routes = [
     {
         path: '',
